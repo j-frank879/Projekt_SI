@@ -15,12 +15,20 @@ import java.util.List;
 public class Dane {
   //0-NKB
   //1-Gray 
-  int kod=-1;
- //0-krzyzowanie
-  //1-mutacja 
-  int w=-1;
-
+  int kod=-1; 
   
+  //rodzaj krzyzowania
+  int k=-1;
+  //prawdopodobienstwo mutacji krzyzowania        
+  float krzyzowanie=0;
+  float mutacja=0;
+  
+  //wielkosc populacji
+  int size_population=0;
+
+  //populacja zapisana w kodzie
+  ArrayList<Osobnik> dane=new ArrayList<Osobnik>();
+
   
 
     
