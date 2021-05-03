@@ -1,4 +1,4 @@
-package projekt_si;
+package project_si;
 
 import java.util.ArrayList;
 import java.util.List;
