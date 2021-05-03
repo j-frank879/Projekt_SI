@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projekt_si;
+package project_si;
 
 import java.awt.Dimension;
 import javax.swing.JFrame;
@@ -13,7 +13,7 @@ import javax.swing.JFrame;
  * @author Joanna
  */
 public class Main_Frame extends javax.swing.JFrame {
-Dane dane=new Dane();
+Data data=new Data();
     /**
      * Creates new form Main_Frame
      */
@@ -45,7 +45,7 @@ Dane dane=new Dane();
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar2.add(jButton1);
 
-        jButton2.setText("Parametry");
+        jButton2.setText("Parameters");
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -90,7 +90,7 @@ Dane dane=new Dane();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        Parametry_Frame frame = new Parametry_Frame(dane);
+        FrameParameters frame = new FrameParameters(data);
         //
         
         frame.setPreferredSize(new Dimension(600, 500));
@@ -127,6 +127,7 @@ Dane dane=new Dane();
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Main_Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
