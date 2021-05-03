@@ -1,5 +1,5 @@
-/Projekt_SI/nbproject/
-/Projekt_SI/build/
+/Project_SI/nbproject/
+/Project_SI/build/
 # Compiled source #
 #############
 *.com
@@ -47,10 +47,10 @@ out/
 target/
 .vscode/launch.json
 
-/Projekt_SI/bin/
-/Projekt_SI/out/
-/Projekt_SI/target/
-/Projekt_SI/.vscode/launch.json
+/Project_SI/bin/
+/Project_SI/out/
+/Project_SI/target/
+/Project_SI/.vscode/launch.json
 
 #NOT SURE
 *.mf

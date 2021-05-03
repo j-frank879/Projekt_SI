@@ -6,14 +6,13 @@
 package projekt_si;
 
 import java.awt.Dimension;
-import javax.swing.JFrame;
 
 /**
  *
  * @author Joanna
  */
 public class Main_Frame extends javax.swing.JFrame {
-Dane dane=new Dane();
+    Data data =new Data();
     /**
      * Creates new form Main_Frame
      */
@@ -90,7 +89,7 @@ Dane dane=new Dane();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        Parametry_Frame frame = new Parametry_Frame(dane);
+        FrameParameters frame = new FrameParameters(data);
         //
         
         frame.setPreferredSize(new Dimension(600, 500));

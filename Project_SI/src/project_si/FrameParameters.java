@@ -7,35 +7,29 @@ package projekt_si;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Joanna
- */
-public class Parametry_Frame extends javax.swing.JFrame {
-Dane dane=new Dane();
-    /**
-     * Creates new form Parametry_Frame
-     */
-    public Parametry_Frame() {
+public class FrameParameters extends javax.swing.JFrame {
+
+    public Data data;
+    public FrameParameters() {
         initComponents();
     }
-    public Parametry_Frame(Dane dane) {
-initComponents();
-        this.dane = dane;
-        if(dane.kod==0)
+    public FrameParameters(Data aData) {
+        initComponents();
+        this.data = aData;
+        if(aData.code ==0)
         {
         jRadioButton1.setSelected(true);
         }
-        else if(dane.kod==1)
+        else if(aData.code ==1)
         {
         jRadioButton2.setSelected(true);
         }
         
-        if(dane.krzyzowanie>0)
+        if(aData.crossover >0)
         {
         jRadioButton6.setSelected(true);
         }
-        else if(dane.mutacja>0)
+        else if(aData.mutation >0)
         {
         jRadioButton7.setSelected(true);
         }
@@ -241,23 +235,27 @@ initComponents();
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         int x=0; //0-dane prawidlowe 1-niepoprawne dane
         if(jRadioButton1.isSelected())
-      {dane.kod=0;
+      {
+          data.code =0;
       }
       else if(jRadioButton2.isSelected())
-      {dane.kod=1;
+      {
+          data.code =1;
       
       }
-      else if(dane.kod==-1)
+      else if(data.code ==-1)
         {JOptionPane.showMessageDialog(null, "Zaznacz jedną wartość.");x=1;}
         
       if(!(jRadioButton7.isSelected())&&(!(jRadioButton3.isSelected())))
-      {dane.krzyzowanie=0;
+      {
+          data.crossover =0;
       }
       else if(!(jRadioButton6.isSelected()))
-      {dane.mutacja=0;
+      {
+          data.mutation =0;
       
       }
-      else if(dane.krzyzowanie==-1)
+      else if(data.crossover ==-1)
         {JOptionPane.showMessageDialog(null, "Zaznacz jedną wartość.");x=1;}
         
         
@@ -283,20 +281,20 @@ initComponents();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Parametry_Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameParameters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Parametry_Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameParameters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Parametry_Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameParameters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Parametry_Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameParameters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Parametry_Frame().setVisible(true);
+                new FrameParameters().setVisible(true);
             }
         });
     }

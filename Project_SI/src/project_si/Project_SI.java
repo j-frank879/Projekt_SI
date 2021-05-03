@@ -4,32 +4,21 @@
  * and open the template in the editor.
  */
 package projekt_si;
+
 import java.awt.Dimension;
 import javax.swing.JFrame;
 
-/**
- *
- * @author Joanna
- */
-public class Projekt_SI {
-   
-    
-    /**
-     * @param args the command line arguments
-     */
+public class Project_SI {
     public static void main(String[] args) {
-    Dane dane=new Dane();
-        
+        Data data = new Data();
+
         Main_Frame frame = new Main_Frame();
-        //
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(600, 500));
         frame.getContentPane().setLayout(null);
-       
-        
-        //Wyswietla okno
+
+        //Display window
         frame.pack();
         frame.setVisible(true);
     }
-    
 }

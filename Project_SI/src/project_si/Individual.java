@@ -5,12 +5,7 @@
  */
 package projekt_si;
 
-/**
- *
- * @author Joanna
- */
-public class Osobnik {
-    String os;
-    int przystosowanie;
-    
+public class Individual {
+    int adaptation;
+    String in;
 }
