@@ -1,4 +1,4 @@
-/Projekt_SI/nbproject/private/
+/Projekt_SI/nbproject/
 /Projekt_SI/build/
 # Compiled source #
 #############
@@ -46,3 +46,12 @@ bin/
 out/
 target/
 .vscode/launch.json
+
+/Projekt_SI/bin/
+/Projekt_SI/out/
+/Projekt_SI/target/
+/Projekt_SI/.vscode/launch.json
+
+#NOT SURE
+*.mf
+*.xml
