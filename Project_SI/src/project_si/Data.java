@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+
 public class Data {
     //0-NKB
     //1-Gray
@@ -27,15 +28,66 @@ String function;
 int minX=0,maxX=0,minY=0,maxY=0;
 //number of generatons 
 int generation=1;
-
-  String decimal_to_binary(int x)
-  {String s="";
-  for(int i=0;dane.size()>0;i++)    
-{  s=s+x%2;    
-x=x/2;    
+//length of binary word example 01101 bin_lenght=5
+int bin_length=0;
+void set_bin_length()
+{int a= (maxX>maxY) ? maxX:maxY;
+int x=0;
+          while((a!=1)&&(a!=0))
+          {a/=2;
+          x++;
+          }
+          x++;
+bin_length=x; 
 }
+  String decimal_to_binary(int x)
+  {String s=Integer.toBinaryString(x);
+while((s.length()<bin_length))
+      {s="0"+s;
+      }
       return s;
-	 
+  };
+  
+  String binary_to_gray(String x)
+  {String s="";
+  s=s+x.charAt(0);
+  for(int i=1;i<x.length();i++)
+  {if(x.charAt(i-1)==x.charAt(i))
+  {s+="0";}
+  else
+  {s+="1";}
+  }
+  
+  return s;
+  };
+  int gray_to_decimal(String x)
+  {int a;
+  String b = "";
+
+        b += x.charAt(0);
+
+        for (int i = 1; i < x.length(); i++)
+        {
+
+            if (x.charAt(i) == '0')
+                b += b.charAt(i - 1);
+
+            else
+            {if(b.charAt(i - 1)=='0')
+                b += '1';
+            else
+                b += '0';
+            }
+                
+        }
+ 
+        a=bin_to_decimal(b);
+  return a;
+  };
+  
+  int bin_to_decimal(String x)
+  {int a=Integer.parseInt(x,2);
+  return a;
   };
   //rulet selection
   void Selection()
