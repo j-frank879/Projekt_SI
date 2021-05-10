@@ -6,17 +6,17 @@
 package project_si;
 
 import java.awt.Dimension;
-import javax.swing.JFrame;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.*;
 
-/**
- *
- * @author Joanna
- */
 public class Main_Frame extends javax.swing.JFrame {
-Data data=new Data();
+    Data data = new Data();
+
     /**
      * Creates new form Main_Frame
      */
+
     public Main_Frame() {
         initComponents();
     }
@@ -30,86 +30,82 @@ Data data=new Data();
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jToolBar2 = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        jToolBar2 = new JToolBar();
+        jButton1 = new JButton();
+        jButtonParameters = new JButton();
+        jPanel1 = new JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         jToolBar2.setRollover(true);
 
         jButton1.setText("Start");
         jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.setHorizontalTextPosition(SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(SwingConstants.BOTTOM);
         jToolBar2.add(jButton1);
 
-        jButton2.setText("Parameters");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+        jButtonParameters.setText("Parameters");
+        jButtonParameters.setFocusable(false);
+        jButtonParameters.setHorizontalTextPosition(SwingConstants.CENTER);
+        jButtonParameters.setVerticalTextPosition(SwingConstants.BOTTOM);
+        jButtonParameters.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                jButtonParametersMouseClicked(evt);
             }
         });
-        jToolBar2.add(jButton2);
+        jToolBar2.add(jButtonParameters);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 414, Short.MAX_VALUE)
+                jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGap(0, 414, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 229, Short.MAX_VALUE)
+                jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGap(0, 229, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(jToolBar2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addComponent(jToolBar2, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)
+                                .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void jButtonParametersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonParametersMouseClicked
         FrameParameters frame = new FrameParameters(data);
-        //
-        
+
         frame.setPreferredSize(new Dimension(600, 500));
         frame.getContentPane().setLayout(null);
-       
-        
+
+
         //Wyswietla okno
         frame.pack();
         frame.setVisible(true);
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_jButtonParametersMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -140,7 +136,7 @@ Data data=new Data();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonParameters;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JToolBar jToolBar2;
     // End of variables declaration//GEN-END:variables
