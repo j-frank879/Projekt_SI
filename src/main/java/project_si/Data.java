@@ -95,6 +95,80 @@ public class Data {
         return a;
     }
 
+	//calculating if crossover/mutation happened 
+  Boolean probability(double x)
+  {int q=1;
+	  while(x%1>0)
+	  {x*=10;
+  q*=10;}
+  Random rand = new Random();
+  int r=rand.nextInt(q);
+  if(r<x)
+  {return true;}
+  else
+	  return false;
+	  
+  }
+  //generating first generation in dane list
+  void first_gen()
+  {set_bin_length();
+  dane.clear();
+  Individual next=new Individual();
+	  for(int i=minX;i<maxX;i++)
+	  {
+		  for(int j=minY;j<maxY;j++)
+		  {next.x=i;
+	  next.y=j;
+	  if(code==0)
+	  next.in=decimal_to_binary(i)+decimal_to_binary(j);
+  else
+	  next.in=binary_to_gray(decimal_to_binary(i))+binary_to_gray(decimal_to_binary(j));
+		
+next.adaptation();
+dane.add(new Individual(next));		
+		  }
+	  }
+  
+	  
+  }
+  
+  void onepoint_crossover()
+  {ArrayList<Individual> new_gen = new ArrayList<>();
+  
+  Individual next=new Individual();
+  //crossing 
+  int s=bin_length*2-1;
+  int i=-1;
+  int j=-1;
+  
+  for(Individual ind1:dane)
+  {i++;
+	for(Individual ind2:dane)
+  {j++;
+	if((j<i)||(!(probability(crossover))))
+		continue;
+	//first
+	next.in=ind1.in.substring(0,bin_length-1)+ind2.in.substring(bin_length,s);
+	 next.x=ind1.x;
+	 next.y=ind2.y;
+	 next.adaptation();
+	 new_gen.add(new Individual(next));
+	 //second
+	 next.in=ind2.in.substring(0,bin_length-1)+ind1.in.substring(bin_length,s);
+	 next.x=ind2.x;
+	 next.y=ind1.y;
+	 next.adaptation();
+	 new_gen.add(new Individual(next));
+	  
+  }
+	  j=-1;
+  }
+  for(Individual x:new_gen)
+  {dane.add(x);
+	  
+  }
+  }
+	
     //rulet selection
     void Selection() {
         Random rand = new Random();
