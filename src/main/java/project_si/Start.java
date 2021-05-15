@@ -16,8 +16,9 @@ import javax.swing.JFrame;
 public class Start extends Application {
     @Override
     public void start(Stage stage) throws Exception {
+
         Scene scene = new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/mainWindow.fxml")));
-        stage.setTitle("FXML Welcome");
+        stage.setTitle("Project_SI");
         stage.setScene(scene);
         stage.show();
     }

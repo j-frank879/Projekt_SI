@@ -24,7 +24,7 @@ public class Data {
     ArrayList<Individual> dane = new ArrayList<>();
 
     // the adaptation function
-    String function;
+    String function="";
     int minX = 0, maxX = 0, minY = 0, maxY = 0;
     //number of generatons
     int generation = 1;
