@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -14,32 +15,41 @@ public class mainWindowController {
 
    public Data data=new Data();
     @FXML
-    Button next_gen;
-    Button parameters;
-    Button last_gen;
+    Button nextGenerationButton;
     @FXML
+    Button parametersButton;
+    @FXML
+    Button lastGenerationButton;
 
-    void initialize()  {
-}
+    @FXML
+    void initialize(){
+        parametersButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x-> parametersButtonClicked());
+        nextGenerationButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x-> nextGenerationButtonClicked());
+        lastGenerationButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x->  lastGenerationButtonClicked());
+    }
 
-    public void parameters(ActionEvent actionEvent) throws IOException {
-
+    private void parametersButtonClicked() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/parametersWindow.fxml"));
-        Parent root1 = (Parent) fxmlLoader.load();
-        parametersWindowController controller= fxmlLoader.getController();
-        controller.setData(data);
-        Stage stage = new Stage();
-        stage.setTitle("Parameters");
-        stage.setScene(new Scene(root1));
-        stage.show();
+        Parent root1 = null;
+        try {
+            root1 = (Parent) fxmlLoader.load();
+            parametersWindowController controller= fxmlLoader.getController();
+            controller.setData(data);
+            Stage stage = new Stage();
+            stage.setTitle("Parameters");
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException aE) {
+            aE.printStackTrace();
+        }
+    }
+
+    private void nextGenerationButtonClicked() {
 
     }
 
-    public void last_generation(ActionEvent actionEvent) {
-    }
+    private void lastGenerationButtonClicked() {
 
-    public void next_gen(ActionEvent actionEvent) {
     }
-
 
 }
