@@ -13,15 +13,10 @@ public class Data {
     private int numberOfGeneration;
     private String twoVariablesFunction;
     private int minX, maxX, minY, maxY;
-    private int lengthOfBinaryWord;
+    private int lengthOfBinaryTheGreatestWord;
 
     //population saved in code
     private ArrayList<Individual> dane = new ArrayList<>();
-
-    Data(){ //TODO set default values
-        this(Coding.NKB, Crossover.ONE_POINT,0,0,0,
-                0, "x+y",0,0,0,0);
-    }
 
     Data(Coding aKindOfCoding, Crossover aKindOfCrossing, double aProbabilityOfCrossover, double aProbabilityOfMutation, int aSizeOfPopulation,
          int aNumberOfGeneration, String aTwoVariablesFunction, int aMinX, int aMaxX, int aMinY, int aMaxY) {
@@ -36,14 +31,10 @@ public class Data {
         maxX = aMaxX;
         minY = aMinY;
         maxY = aMaxY;
-        settingNotSetParameters();
+        lengthOfBinaryTheGreatestWord = 4;
+        //TODO what value should lengthOfBinaryWord have while initializing
     }
 
-    private void settingNotSetParameters() {
-        if(kindOfCoding == null) kindOfCoding = Coding.NKB;
-        if(kindOfCrossing == null) kindOfCrossing = Crossover.ONE_POINT;
-        if(twoVariablesFunction == null) twoVariablesFunction = "x+y";
-    }
 
     void set_bin_length() {
         int a = (maxX > maxY) ? maxX : maxY;
@@ -53,12 +44,12 @@ public class Data {
             x++;
         }
         x++;
-        lengthOfBinaryWord = x;
+        lengthOfBinaryTheGreatestWord = x;
     }
 
     String decimal_to_binary(int x) {
         String s = Integer.toBinaryString(x);
-        while ((s.length() < lengthOfBinaryWord)) {
+        while ((s.length() < lengthOfBinaryTheGreatestWord)) {
             s = "0" + s;
         }
         return s;
@@ -109,6 +100,7 @@ public class Data {
     }
 
     //calculating if crossover/mutation happened
+
     Boolean probability(double x) {
         int q = 1;
         while (x % 1 > 0) {
@@ -123,8 +115,8 @@ public class Data {
             return false;
 
     }
-
     //generating first generation in dane list
+
     void makeFirstGeneration() {
         set_bin_length();
         dane.clear();
@@ -145,13 +137,12 @@ public class Data {
 
 
     }
-
     void onePointCrossover() {
         ArrayList<Individual> new_gen = new ArrayList<>();
 
         Individual next = new Individual();
         //crossing
-        int s = lengthOfBinaryWord * 2 - 1;
+        int s = lengthOfBinaryTheGreatestWord * 2 - 1;
         int i = -1;
         int j = -1;
 
@@ -162,13 +153,13 @@ public class Data {
                 if ((j < i) || (!(probability(probabilityOfCrossover))))
                     continue;
                 //first
-                next.in = ind1.in.substring(0, lengthOfBinaryWord - 1) + ind2.in.substring(lengthOfBinaryWord, s);
+                next.in = ind1.in.substring(0, lengthOfBinaryTheGreatestWord - 1) + ind2.in.substring(lengthOfBinaryTheGreatestWord, s);
                 next.x = ind1.x;
                 next.y = ind2.y;
                 next.adaptation();
                 new_gen.add(new Individual(next));
                 //second
-                next.in = ind2.in.substring(0, lengthOfBinaryWord - 1) + ind1.in.substring(lengthOfBinaryWord, s);
+                next.in = ind2.in.substring(0, lengthOfBinaryTheGreatestWord - 1) + ind1.in.substring(lengthOfBinaryTheGreatestWord, s);
                 next.x = ind2.x;
                 next.y = ind1.y;
                 next.adaptation();
@@ -179,11 +170,11 @@ public class Data {
         }
         for (Individual x : new_gen) {
             dane.add(x);
-
         }
     }
 
     //roulette  selection
+
     void rouletteSelection() {
         Random rand = new Random();
 
@@ -207,8 +198,6 @@ public class Data {
         int r, l = 0, h = dl - 1, mid, index;
         while (i < sizeOfPopulation) {
             r = rand.nextInt(prefix[dl - 1]) + 1;
-
-
             while (l < dl) {
                 mid = l + ((h - l) >> 1);
 
@@ -221,17 +210,149 @@ public class Data {
             } else {
                 index = -1;
             }
-
-
             dane.add(new Individual(dane.get(index)));
             i++;
         }
 
         while (dane.size() > sizeOfPopulation) {
             dane.remove(0);
-
         }
     }
 
+    void setLengthOfBinaryTheGreatestWord(int aLengthOfBinaryTheGreatestWord) {
+        lengthOfBinaryTheGreatestWord = aLengthOfBinaryTheGreatestWord;
+    }
 
+    Coding getKindOfCoding() {
+        return kindOfCoding;
+    }
+
+    Crossover getKindOfCrossing() {
+        return kindOfCrossing;
+    }
+
+    double getProbabilityOfCrossover() {
+        return probabilityOfCrossover;
+    }
+
+    double getProbabilityOfMutation() {
+        return probabilityOfMutation;
+    }
+
+    int getSizeOfPopulation() {
+        return sizeOfPopulation;
+    }
+
+    int getNumberOfGeneration() {
+        return numberOfGeneration;
+    }
+
+    String getTwoVariablesFunction() {
+        return twoVariablesFunction;
+    }
+
+    int getMinX() {
+        return minX;
+    }
+
+    int getMaxX() {
+        return maxX;
+    }
+
+    int getMinY() {
+        return minY;
+    }
+
+    int getMaxY() {
+        return maxY;
+    }
+
+    int getLengthOfBinaryTheGreatestWord() {
+        return lengthOfBinaryTheGreatestWord;
+    }
+
+    ArrayList<Individual> getDane() {
+        return dane;
+    }
+    public class Builder{
+
+        Coding kindOfCoding;
+        Crossover kindOfCrossing;
+        Double probabilityOfCrossover;
+        Double probabilityOfMutation;
+        Integer sizeOfPopulation;
+        Integer numberOfGeneration;
+        String twoVariablesFunction;
+        Integer minX, maxX, minY, maxY;
+        Integer lengthOfBinaryWord;
+
+        public Builder kindOfCoding(Coding aKindOfCoding){
+            kindOfCoding = aKindOfCoding;
+            return this;
+        }
+        public Builder kindOfCrossing(Crossover aKindOfCrossing){
+            kindOfCrossing = aKindOfCrossing;
+            return this;
+        }
+        public Builder probabilityOfCrossover(Double aProbabilityOfCrossover){
+            probabilityOfCrossover = aProbabilityOfCrossover;
+            return this;
+        }
+        public Builder probabilityOfMutation(Double aProbabilityOfMutation){
+            probabilityOfMutation = aProbabilityOfMutation;
+            return this;
+        }
+        public Builder sizeOfPopulation(Integer aSizeOfPopulation){
+            sizeOfPopulation = aSizeOfPopulation;
+            return this;
+        }
+        public Builder numberOfGeneration(Integer aNumberOfGeneration){
+            numberOfGeneration = aNumberOfGeneration;
+            return this;
+        }
+        public Builder twoVariablesFunction(String aTwoVariablesFunction){
+            twoVariablesFunction = aTwoVariablesFunction;
+            return this;
+        }
+        public Builder minX(Integer aMinX){
+            minX = aMinX;
+            return this;
+        }
+        public Builder maxX(Integer aMaxX){
+            maxX = aMaxX;
+            return this;
+        }
+        public Builder minY(Integer aMinY){
+            minY = aMinY;
+            return this;
+        }
+        public Builder maxY(Integer aMaxY){
+            maxY = aMaxY;
+            return this;
+        }
+        public Builder lengthOfBinaryWord(Integer aLengthOfBinaryWord){
+            lengthOfBinaryWord = aLengthOfBinaryWord;
+            return this;
+        }
+        public Data build(){
+            if(kindOfCoding == null) kindOfCoding = Coding.NKB;
+            if(kindOfCrossing == null) kindOfCrossing = Crossover.ONE_POINT;
+            if(probabilityOfCrossover == null) probabilityOfCrossover = 0d;
+            if(probabilityOfMutation == null) probabilityOfMutation = 0d;
+            if(sizeOfPopulation == null) sizeOfPopulation = 0;
+            if(numberOfGeneration == null) numberOfGeneration = 0;
+            if(twoVariablesFunction == null) twoVariablesFunction = "x+y";
+            if(lengthOfBinaryWord == null) lengthOfBinaryWord = 0;
+            if(minX == null) minX = 0;
+            if(maxX == null) maxX = 0;
+            if(minY == null) minY = 0;
+            if(maxY == null) maxY = 0;
+
+            Data resultData = new Data(kindOfCoding,kindOfCrossing,probabilityOfCrossover,probabilityOfMutation,sizeOfPopulation,
+                    numberOfGeneration,twoVariablesFunction,minX,maxX,minY,maxY);
+            resultData.setLengthOfBinaryTheGreatestWord(lengthOfBinaryTheGreatestWord);
+
+            return resultData;
+        }
+    }
 }

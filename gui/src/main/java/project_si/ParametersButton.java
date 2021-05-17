@@ -31,6 +31,7 @@ public class ParametersButton extends Button {
         addEventFilter(MouseEvent.MOUSE_CLICKED, x -> {
             showParametersWindowAndSetWhetherSaveParameters();
             if(saving){
+
                 aMainWindowController.setData(dataWithParameters);
             }
         });
