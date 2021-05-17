@@ -75,11 +75,11 @@ public class ParametersButton extends Button {
         vBoxForCrossover.setAlignment(Pos.CENTER);
 
         crossoverProbabilityTextField = new TextField();
-        HBox hBoxCrossoverProbability = new HBox(5,new Label("CrossoverProbability"),crossoverProbabilityTextField);
+        HBox hBoxCrossoverProbability = new HBox(5,new Label("Crossover Probability"),crossoverProbabilityTextField);
         hBoxCrossoverProbability.setAlignment(Pos.CENTER);
 
         mutationProbabilityTextField = new TextField();
-        HBox hBoxMutationProbability = new HBox(5,new Label("MutationProbability"),mutationProbabilityTextField);
+        HBox hBoxMutationProbability = new HBox(5,new Label("Mutation Probability"),mutationProbabilityTextField);
         hBoxMutationProbability.setAlignment(Pos.CENTER);
 
         VBox vBoxForProbability = new VBox(10,hBoxCrossoverProbability,hBoxMutationProbability);
