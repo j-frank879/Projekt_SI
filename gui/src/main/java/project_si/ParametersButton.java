@@ -13,6 +13,7 @@ public class ParametersButton extends Button {
 
     private Stage parametersWindow = new Stage();
     private Data dataWithParameters;
+    private boolean saving;
 
     private TextField crossoverProbabilityTextField;
     private TextField mutationProbabilityTextField;
@@ -28,14 +29,14 @@ public class ParametersButton extends Button {
         super(text);
         setFont(Font.font(15));
         addEventFilter(MouseEvent.MOUSE_CLICKED, x -> {
-            dataWithParameters = showParametersWindowAndReturnSetData();
-            if(dataWithParameters!=null)
+            showParametersWindowAndSetWhetherSaveParameters();
+            if(saving){
                 aMainWindowController.setData(dataWithParameters);
-
+            }
         });
     }
 
-    private Data showParametersWindowAndReturnSetData() {
+    private void showParametersWindowAndSetWhetherSaveParameters() {
         HBox top = new HBox();
         VBox left = new VBox(20);
         VBox center = new VBox(20);
@@ -46,8 +47,6 @@ public class ParametersButton extends Button {
         prepareCenter(center);
         prepareBottom(bottom);
         parametersWindow.showAndWait();
-
-        return null;
     }
 
     private void prepareTop(HBox aTop) {
@@ -136,13 +135,17 @@ public class ParametersButton extends Button {
 
     private void prepareBottom(HBox aBottom) {
         Button saveButton = new Button("Save");
-        saveButton.setPrefWidth(100);
-        saveButton.addEventHandler(MouseEvent.MOUSE_CLICKED,x-> parametersWindow.close());
-
         Button cancelButton = new Button("Cancel");
+        saveButton.setPrefWidth(100);
         cancelButton.setPrefWidth(100);
+
+        saveButton.addEventHandler(MouseEvent.MOUSE_CLICKED,x->{
+            saving = true;
+            parametersWindow.close();
+        });
+
         cancelButton.addEventHandler(MouseEvent.MOUSE_CLICKED,x-> {
-            dataWithParameters = null;
+            saving = false;
             parametersWindow.close();
         });
 
