@@ -5,8 +5,6 @@ import java.util.Random;
 
 
 public class Data {
-    //0-NKB
-    //1-Gray
     private Coding kindOfCoding;
     private Crossover kindOfCrossing;
     private double probabilityOfCrossover;
@@ -23,10 +21,12 @@ public class Data {
     private ArrayList<Individual> dane = new ArrayList<>();
 
     Data(){ //TODO set default values
-        this(Coding.NKB, Crossover.ONE_POINT,0,0,0,0,"x+y",0,0,0,0);
+        this(Coding.NKB, Crossover.ONE_POINT,0,0,0,
+                0, "x+y",0,0,0,0);
     }
 
-    Data(Coding aKindOfCoding, Crossover aKindOfCrossing, double aProbabilityOfCrossover, double aProbabilityOfMutation, int aSizeOfPopulation, int aNumberOfGeneration, String aTwoVariablesFunction, int aMinX, int aMaxX, int aMinY, int aMaxY) {
+    Data(Coding aKindOfCoding, Crossover aKindOfCrossing, double aProbabilityOfCrossover, double aProbabilityOfMutation, int aSizeOfPopulation,
+         int aNumberOfGeneration, String aTwoVariablesFunction, int aMinX, int aMaxX, int aMinY, int aMaxY) {
         kindOfCoding = aKindOfCoding;
         kindOfCrossing = aKindOfCrossing;
         probabilityOfCrossover = aProbabilityOfCrossover;
