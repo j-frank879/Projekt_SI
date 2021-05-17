@@ -84,8 +84,7 @@ public class mainWindowController {
         System.out.println("lastGenerationClicked!");
     }
 
-    private void startButtonClicked() {
-        System.out.println("startClicked!");
+    private void startButtonClicked() { System.out.println("startClicked!");
     }
 
     void setData(Data aDataWithParameters) {

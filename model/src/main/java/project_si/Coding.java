@@ -1,5 +1,6 @@
 package project_si;
 
+
 public enum Coding {
     NKB((byte)0),
     GRAY((byte)1);
@@ -13,4 +14,5 @@ public enum Coding {
     byte getKind() {
         return kind;
     }
+
 }

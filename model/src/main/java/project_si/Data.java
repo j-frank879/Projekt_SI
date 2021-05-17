@@ -13,8 +13,6 @@ public class Data {
     private int numberOfGeneration;
     private String twoVariablesFunction;
     private int minX, maxX, minY, maxY;
-
-    //length of binary word example 01101 bin_lenght=5
     private int lengthOfBinaryWord;
 
     //population saved in code
@@ -38,7 +36,6 @@ public class Data {
         maxX = aMaxX;
         minY = aMinY;
         maxY = aMaxY;
-
         settingNotSetParameters();
     }
 

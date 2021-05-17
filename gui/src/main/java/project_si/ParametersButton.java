@@ -15,15 +15,15 @@ public class ParametersButton extends Button {
     private Data dataWithParameters;
     private boolean saving;
 
-    private TextField crossoverProbabilityTextField;
-    private TextField mutationProbabilityTextField;
     private TextField twoVariablesFunctionTextField;
-    private TextField populationSizeTextField;
-    private TextField numberOfGenerationsTextField;
-    private TextField minXTextField;
-    private TextField minYTextField;
-    private TextField maxXTextField;
-    private TextField maxYTextField;
+    private IntField crossoverProbabilityTextField;
+    private IntField mutationProbabilityTextField;
+    private IntField populationSizeTextField;
+    private IntField numberOfGenerationsTextField;
+    private IntField minXTextField;
+    private IntField minYTextField;
+    private IntField maxXTextField;
+    private IntField maxYTextField;
 
     ParametersButton(String text, mainWindowController aMainWindowController) {
         super(text);
@@ -74,11 +74,11 @@ public class ParametersButton extends Button {
         VBox vBoxForCrossover = new VBox(10,onePointCrossover,twoPointCrossover,uniformCrossover);
         vBoxForCrossover.setAlignment(Pos.CENTER);
 
-        crossoverProbabilityTextField = new TextField();
+        crossoverProbabilityTextField = new IntField(-1000,1000,0);
         HBox hBoxCrossoverProbability = new HBox(5,new Label("Crossover Probability"),crossoverProbabilityTextField);
         hBoxCrossoverProbability.setAlignment(Pos.CENTER);
 
-        mutationProbabilityTextField = new TextField();
+        mutationProbabilityTextField = new IntField(-1000,1000,0);
         HBox hBoxMutationProbability = new HBox(5,new Label("Mutation Probability"),mutationProbabilityTextField);
         hBoxMutationProbability.setAlignment(Pos.CENTER);
 
@@ -100,21 +100,21 @@ public class ParametersButton extends Button {
     private void prepareLeft(VBox aLeft) {
         aLeft.setStyle("-fx-padding: 30px;");
 
-        twoVariablesFunctionTextField = new TextField();
+        twoVariablesFunctionTextField = new IntField(-1000,1000,0);
         HBox twoVariablesFunction = new HBox(5,new Label("F(x,y):"),twoVariablesFunctionTextField);
         twoVariablesFunction.setAlignment(Pos.CENTER);
 
-        minXTextField = new TextField();
-        minXTextField.setPrefWidth(30);
-        minYTextField = new TextField();
-        minYTextField.setPrefWidth(30);
+        minXTextField = new IntField(-1000,1000,0);
+        minXTextField.setPrefWidth(50);
+        minYTextField = new IntField(-1000,1000,0);
+        minYTextField.setPrefWidth(50);
         HBox minXAndMinY = new HBox(5,new Label("MinX:"),minXTextField,new Label("MinY:"),minYTextField);
         minXAndMinY.setAlignment(Pos.CENTER);
 
-        maxXTextField = new TextField();
-        maxXTextField.setPrefWidth(30);
-        maxYTextField = new TextField();
-        maxYTextField.setPrefWidth(30);
+        maxXTextField = new IntField(-1000,1000,0);
+        maxXTextField.setPrefWidth(50);
+        maxYTextField = new IntField(-1000,1000,0);
+        maxYTextField.setPrefWidth(50);
         HBox maxXAndMaxY = new HBox(5,new Label("MaxX:"),maxXTextField,new Label("MaxY:"),maxYTextField);
         maxXAndMaxY.setAlignment(Pos.CENTER);
 
@@ -122,11 +122,11 @@ public class ParametersButton extends Button {
     }
 
     private void prepareCenter(VBox aCenter) {
-        populationSizeTextField = new TextField();
+        populationSizeTextField = new IntField(-1000,1000,0);
         HBox populationSize = new HBox(5,new Label("Population size:"),populationSizeTextField);
         populationSize.setAlignment(Pos.CENTER);
 
-        numberOfGenerationsTextField = new TextField();
+        numberOfGenerationsTextField = new IntField(-1000,1000,0);
         HBox numberOfGenerations = new HBox(5,new Label("Number of generation:"),numberOfGenerationsTextField);
         numberOfGenerations.setAlignment(Pos.CENTER);
 

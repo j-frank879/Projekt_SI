@@ -27,7 +27,6 @@ public class Individual {
     //calculating adaptation
     void adaptation() {
         this.adaptation = x * x - y * y;
-
     }
 
 }
