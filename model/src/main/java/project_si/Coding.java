@@ -1,12 +1,16 @@
 package project_si;
 
-public enum KindOfCoding {
+public enum Coding {
     NKB((byte)0),
     GRAY((byte)1);
 
     private final byte kind;
 
-    KindOfCoding(byte aKind) {
+    Coding(byte aKind) {
         kind = aKind;
+    }
+
+    byte getKind() {
+        return kind;
     }
 }

@@ -1,14 +1,13 @@
 package project_si;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 
 public class Data {
     //0-NKB
     //1-Gray
-    int code = -1;
+    Coding code = Coding.NKB;
 
     //kind of crossing
     int kindOfCrossing = -1;
@@ -68,7 +67,6 @@ public class Data {
     int gray_to_decimal(String x) {
         int a;
         String b = "";
-
         b += x.charAt(0);
 
         for (int i = 1; i < x.length(); i++) {
@@ -119,7 +117,7 @@ public class Data {
 		  for(int j=minY;j<maxY;j++)
 		  {next.x=i;
 	  next.y=j;
-	  if(code==0)
+	  if(code== Coding.NKB)
 	  next.in=decimal_to_binary(i)+decimal_to_binary(j);
   else
 	  next.in=binary_to_gray(decimal_to_binary(i))+binary_to_gray(decimal_to_binary(j));
