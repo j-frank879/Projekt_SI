@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -37,20 +38,35 @@ public class mainWindowController {
         exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x->  exit());
     }
 
-    private void parametersButtonClicked() {
+    private void parametersButtonClicked(){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/parametersWindow.fxml"));
-        Parent root1 = null;
+        Stage parametersWindow = new Stage();
+        Scene scene = null;
         try {
-            root1 = (Parent) fxmlLoader.load();
-            parametersWindowController controller= fxmlLoader.getController();
-            controller.setData(data);
-            Stage stage = new Stage();
-            stage.setTitle("Parameters");
-            stage.setScene(new Scene(root1));
-            stage.showAndWait();
+            scene = new Scene(fxmlLoader.load());
+            scene.getStylesheets().add("fxml/main.css");
+            parametersWindow.setScene(scene);
+            parametersWindow.initOwner(parametersButton.getScene().getWindow());
+            parametersWindow.initModality(Modality.APPLICATION_MODAL);
+            parametersWindow.setTitle("Choose parameters!");
+            parametersWindow.setResizable(false);
+            parametersWindow.showAndWait();
         } catch (IOException aE) {
             aE.printStackTrace();
         }
+//        Parent root = null;
+//        try {
+//            root = (Parent) fxmlLoader.load();
+//            parametersWindowController controller= fxmlLoader.getController();
+//            controller.setData(data);
+//            Stage stage = new Stage();
+//            stage.setTitle("Parameters");
+//            stage.setScene(new Scene(root));
+//            stage.showAndWait();
+//        } catch (IOException aE) {
+//            aE.printStackTrace();
+//        }
+
     }
 
     private void nextGenerationButtonClicked() {

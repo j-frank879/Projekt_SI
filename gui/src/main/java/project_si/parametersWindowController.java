@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -34,6 +35,11 @@ public class parametersWindowController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        saveButton.addEventHandler(MouseEvent.MOUSE_CLICKED,x-> saveButtonClicked());
+        saveButton.addEventHandler(MouseEvent.MOUSE_CLICKED,x-> saveButtonClicked());
+    }
+
+    private void saveButtonClicked() {
 
     }
 
