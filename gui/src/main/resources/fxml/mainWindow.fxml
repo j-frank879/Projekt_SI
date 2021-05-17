@@ -3,28 +3,56 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="566.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project_si.mainWindowController">
-   <children>
-      <Button id="parameters" fx:id="parametersButton"  layoutY="-1.0" mnemonicParsing="false" onAction="#parameters" text="Parameters">
-         <font>
-            <Font size="15.0" />
-         </font>
-
-      </Button>
-      <Button id="nextGenerationButton" fx:id="nextGenerationButton" layoutX="95.0" layoutY="-1.0" mnemonicParsing="false" onAction="#next_gen" text="NextGeneration">
-         <font>
-            <Font size="15.0" />
-         </font>
-
-      </Button>
-      <Button id="lastGenerationButton" fx:id="lastGenerationButton" layoutX="178.0" layoutY="-1.0" mnemonicParsing="false" onAction="#last_generation" text="LastGeneration">
-         <font>
-            <Font size="15.0" />
-         </font>
-
-      </Button>
-      <TextField editable="false" layoutX="-2.0" layoutY="31.0" prefHeight="533.0" prefWidth="936.0" />
-   </children>
-</AnchorPane>
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project_si.mainWindowController">
+   <center>
+      <AnchorPane prefHeight="570.0" prefWidth="934.0">
+         <children>
+            <TextField editable="false" layoutX="35.0" layoutY="18.0" prefHeight="531.0" prefWidth="865.0" />
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <Button id="parameters" fx:id="parametersButton" mnemonicParsing="false" text="Parameters">
+               <font>
+                  <Font size="15.0" />
+               </font>
+      
+                        </Button>
+            <Button id="nextGenerationButton" fx:id="nextGenerationButton" mnemonicParsing="false" text="NextGeneration">
+               <font>
+                  <Font size="15.0" />
+               </font>
+      
+                        </Button>
+            <Button id="lastGenerationButton" fx:id="lastGenerationButton" mnemonicParsing="false" text="LastGeneration">
+               <font>
+                  <Font size="15.0" />
+               </font>
+      
+                        </Button>
+         </children>
+      </HBox>
+   </top>
+   <bottom>
+      <HBox prefHeight="31.0" prefWidth="934.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="31.0" prefWidth="467.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="56.0" text="Start" />
+               </children>
+            </HBox>
+            <HBox alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="31.0" prefWidth="467.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="64.0" text="Exit" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

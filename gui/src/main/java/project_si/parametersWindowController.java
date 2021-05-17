@@ -12,12 +12,14 @@ import java.util.ResourceBundle;
 
 public class parametersWindowController implements Initializable  {
     public Data data;
-    @FXML public RadioButton nkb,gray;
-    @FXML public RadioButton cross1,cross2,cross3;
-    @FXML public TextField minX,maxX,minY,maxY,pop_size,num_gen,p_cross,p_m,function;
-    @FXML public   Button closeButton;
-
     @FXML
+    public RadioButton nkb,gray;
+    @FXML
+    public RadioButton cross1,cross2,cross3;
+    @FXML
+    public TextField minX,maxX,minY,maxY,pop_size,num_gen,p_cross,p_m,function;
+    @FXML
+    public Button closeButton;
 
     public void setData(Data data){
         this.data = data;
