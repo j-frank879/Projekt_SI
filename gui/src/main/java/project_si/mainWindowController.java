@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -20,23 +21,30 @@ public class mainWindowController {
     @FXML
     Button nextGenerationButton;
     @FXML
-    Button parametersButton;
-    @FXML
     Button lastGenerationButton;
     @FXML
     Button startButton;
     @FXML
     Button exitButton;
+    @FXML
+    HBox hBoxWhichParameterButtonIs;
 
 
     @FXML
     void initialize(){
-        parametersButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x-> parametersButtonClicked());
         nextGenerationButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x-> nextGenerationButtonClicked());
         lastGenerationButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x->  lastGenerationButtonClicked());
         startButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x->  startButtonClicked());
         exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x->  exit());
+
+        createParametersButton();
     }
+
+    private void createParametersButton() {
+        ParametersButton parametersButton = new ParametersButton("Parameters",this);
+        hBoxWhichParameterButtonIs.getChildren().add(parametersButton);
+    }
+
 
     private void parametersButtonClicked(){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/parametersWindow.fxml"));
@@ -44,9 +52,8 @@ public class mainWindowController {
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load());
-            scene.getStylesheets().add("fxml/main.css");
             parametersWindow.setScene(scene);
-            parametersWindow.initOwner(parametersButton.getScene().getWindow());
+           // parametersWindow.initOwner(parametersButton.getScene().getWindow());
             parametersWindow.initModality(Modality.APPLICATION_MODAL);
             parametersWindow.setTitle("Choose parameters!");
             parametersWindow.setResizable(false);
@@ -79,5 +86,9 @@ public class mainWindowController {
 
     private void startButtonClicked() {
         System.out.println("startClicked!");
+    }
+
+    void setData(Data aDataWithParameters) {
+
     }
 }

@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static javafx.application.Platform.exit;
+
 public class parametersWindowController implements Initializable {
     public Data data;
     @FXML
@@ -36,7 +38,7 @@ public class parametersWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         saveButton.addEventHandler(MouseEvent.MOUSE_CLICKED,x-> saveButtonClicked());
-        saveButton.addEventHandler(MouseEvent.MOUSE_CLICKED,x-> saveButtonClicked());
+        cancelButton.addEventHandler(MouseEvent.MOUSE_CLICKED,x-> exit());
     }
 
     private void saveButtonClicked() {

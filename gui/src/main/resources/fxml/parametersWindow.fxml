@@ -12,9 +12,9 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project_si.parametersWindowController">
    <center>
-      <VBox>
+      <VBox BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER">
                <children>
                   <Label text="Population size:">
                      <padding>
@@ -24,7 +24,7 @@
                         <Insets top="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField id="pop_size" fx:id="populationSizeTextField" prefHeight="25.0" prefWidth="46.0">
+                  <TextField id="pop_size" fx:id="populationSizeTextField">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -32,6 +32,10 @@
                         <Insets top="10.0" />
                      </HBox.margin>
                   </TextField>
+               </children>
+            </HBox>
+            <HBox>
+               <children>
                   <Label text="Number of generations:">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -40,7 +44,7 @@
                         <Insets left="15.0" top="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField id="numberOfGenerationsTextField" fx:id="numberOfGenerationsTextField" prefHeight="25.0" prefWidth="46.0">
+                  <TextField id="numberOfGenerationsTextField" fx:id="numberOfGenerationsTextField">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -54,9 +58,9 @@
       </VBox>
    </center>
    <top>
-      <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="930.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="310.0">
+            <VBox alignment="CENTER">
                <children>
                   <RadioButton id="nkb" fx:id="nkbRadioButton" ellipsisString="asdf" mnemonicParsing="false" text="NKB">
                      <toggleGroup>
@@ -72,8 +76,11 @@
                      </VBox.margin>
                   </RadioButton>
                </children>
+               <HBox.margin>
+                  <Insets left="30.0" right="30.0" />
+               </HBox.margin>
             </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="310.0">
+            <VBox alignment="TOP_CENTER">
                <children>
                   <RadioButton id="cross1" fx:id="onePointCrossoverRadioButton" mnemonicParsing="false" text="One-point crossover">
                      <toggleGroup>
@@ -90,30 +97,36 @@
                      </VBox.margin>
                   </RadioButton>
                </children>
+               <HBox.margin>
+                  <Insets left="30.0" right="30.0" />
+               </HBox.margin>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="310.0">
+            <VBox alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER">
                      <children>
                         <Label text="Crossover probability:">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField id="crossoverProbabilityTextField" fx:id="crossoverProbabilityTextField" prefHeight="25.0" prefWidth="115.0" />
+                        <TextField id="crossoverProbabilityTextField" fx:id="crossoverProbabilityTextField" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER">
                      <children>
                         <Label text="Mutation probability:">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField id="mutationProbabilityTextField" fx:id="mutationProbabilityTextField" prefHeight="25.0" prefWidth="115.0" />
+                        <TextField id="mutationProbabilityTextField" fx:id="mutationProbabilityTextField" />
                      </children>
                   </HBox>
                </children>
+               <HBox.margin>
+                  <Insets left="30.0" right="30.0" />
+               </HBox.margin>
             </VBox>
          </children>
       </HBox>
@@ -135,22 +148,31 @@
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </Label>
-                  <TextField fx:id="twoVariableFunctionTextField" prefHeight="25.0" prefWidth="115.0">
+                  <TextField fx:id="twoVariableFunctionTextField">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </TextField>
                </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER">
                <children>
                   <Label text="MinX:">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </Label>
-                  <TextField id="minX" fx:id="minXTextField" prefHeight="25.0" prefWidth="30.0">
+                  <TextField id="minX" fx:id="minXTextField" prefWidth="50.0">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -163,21 +185,27 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField id="minY" fx:id="minYTextField" prefHeight="25.0" prefWidth="30.0">
+                  <TextField id="minY" fx:id="minYTextField" prefWidth="50.0">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </TextField>
                </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER">
                <children>
                   <Label text="MaxX:">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </Label>
-                  <TextField id="maxX" fx:id="maxXTextField" prefHeight="17.0" prefWidth="30.0">
+                  <TextField id="maxX" fx:id="maxXTextField" prefWidth="50.0">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -190,18 +218,21 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField id="maxYTextFiel" fx:id="maxYTextField" prefHeight="25.0" prefWidth="30.0">
+                  <TextField id="maxYTextFiel" fx:id="maxYTextField" prefWidth="50.0">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </TextField>
                </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
             </HBox>
          </children>
       </VBox>
    </left>
    <bottom>
-      <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox alignment="BOTTOM_RIGHT" BorderPane.alignment="CENTER">
          <children>
             <Button id="closeButton" fx:id="saveButton" cancelButton="true" mnemonicParsing="false" prefHeight="37.0" prefWidth="76.0" text="Save">
                <padding>

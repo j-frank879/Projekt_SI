@@ -18,19 +18,19 @@
    <top>
       <HBox BorderPane.alignment="CENTER">
          <children>
-            <Button id="parameters" fx:id="parametersButton" mnemonicParsing="false" text="Parameters">
+            <Button fx:id="startButton" mnemonicParsing="false" text="Start">
                <font>
                   <Font size="15.0" />
                </font>
       
                         </Button>
-            <Button id="nextGenerationButton" fx:id="nextGenerationButton" mnemonicParsing="false" text="NextGeneration">
+            <Button fx:id="nextGenerationButton" mnemonicParsing="false" text="NextGeneration">
                <font>
                   <Font size="15.0" />
                </font>
       
                         </Button>
-            <Button id="lastGenerationButton" fx:id="lastGenerationButton" mnemonicParsing="false" text="LastGeneration">
+            <Button fx:id="lastGenerationButton" mnemonicParsing="false" text="LastGeneration">
                <font>
                   <Font size="15.0" />
                </font>
@@ -42,14 +42,13 @@
    <bottom>
       <HBox prefHeight="31.0" prefWidth="934.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="31.0" prefWidth="467.0">
-               <children>
-                  <Button id="startButton" fx:id="startButton" mnemonicParsing="false" prefHeight="34.0" prefWidth="56.0" text="Start" />
-               </children>
-            </HBox>
+            <HBox prefWidth="467.0" fx:id="hBoxWhichParameterButtonIs"></HBox>
             <HBox alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="31.0" prefWidth="467.0">
                <children>
-                  <Button id="exitButton" fx:id="exitButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="64.0" text="Exit" />
+                  <Button id="exitButton" fx:id="exitButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="64.0" text="Exit">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Button>
                </children>
             </HBox>
          </children>
