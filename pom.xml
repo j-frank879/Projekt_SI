@@ -6,7 +6,12 @@
 
     <groupId>project_si</groupId>
     <artifactId>Project_SI</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+    <modules>
+        <module>model</module>
+        <module>gui</module>
+    </modules>
 
     <properties>
         <maven.compiler.target>11</maven.compiler.target>
