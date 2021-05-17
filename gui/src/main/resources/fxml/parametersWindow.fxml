@@ -1,44 +1,219 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="ok" prefHeight="566.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project_si.parametersWindowController">
-   <children>
-      <Button id="closeButton" cancelButton="true" layoutX="795.0" layoutY="498.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" text="Ok" />
-      <RadioButton id="nkb" ellipsisString="asdf" layoutX="30.0" layoutY="56.0" mnemonicParsing="false" text="NKB">
-         <toggleGroup>
-            <ToggleGroup fx:id="code" />
-         </toggleGroup></RadioButton>
-      <RadioButton id="gray" layoutX="30.0" layoutY="84.0" mnemonicParsing="false" text="Gray" toggleGroup="$code" />
-      <Label layoutX="510.0" layoutY="48.0" text="Crossover probability:" />
-      <Label layoutX="510.0" layoutY="76.0" text="Mutation probability:" />
-      <RadioButton id="cross1" layoutX="150.0" layoutY="56.0" mnemonicParsing="false" text="One-point crossover">
-         <toggleGroup>
-            <ToggleGroup fx:id="crossover" />
-         </toggleGroup></RadioButton>
-      <RadioButton id="cross2" layoutX="150.0" layoutY="84.0" mnemonicParsing="false" text="Two-point crossover" toggleGroup="$crossover" />
-      <RadioButton id="cross3" layoutX="150.0" layoutY="117.0" mnemonicParsing="false" text="Uniform crossover" toggleGroup="$crossover" />
-      <Label layoutX="30.0" layoutY="263.0" text="MinX:" />
-      <Label layoutX="156.0" layoutY="267.0" text="MinY:" />
-      <Label layoutX="30.0" layoutY="287.0" text="MaxX:" />
-      <Label layoutX="156.0" layoutY="291.0" text="MaxY:" />
-      <Label layoutX="30.0" layoutY="183.0" text="Two-variable function:" />
-      <Label layoutX="30.0" layoutY="209.0" text="F(x,y):" />
-      <TextField id="function" layoutX="63.0" layoutY="205.0" prefHeight="25.0" prefWidth="115.0" />
-      <TextField id="minX" layoutX="63.0" layoutY="259.0" prefHeight="25.0" prefWidth="30.0" />
-      <TextField id="maxX" layoutX="63.0" layoutY="287.0" prefHeight="17.0" prefWidth="30.0" />
-      <TextField id="minY" layoutX="188.0" layoutY="261.0" prefHeight="25.0" prefWidth="30.0" />
-      <TextField id="maxY" layoutX="188.0" layoutY="289.0" prefHeight="25.0" prefWidth="30.0" />
-      <Label layoutX="32.0" layoutY="346.0" text="Population size:" />
-      <TextField id="pop_size" layoutX="121.0" layoutY="342.0" prefHeight="25.0" prefWidth="46.0" />
-      <Label layoutX="32.0" layoutY="374.0" text="Number of generations:" />
-      <TextField id="num_gen" layoutX="163.0" layoutY="370.0" prefHeight="25.0" prefWidth="46.0" />
-      <TextField id="p_cross" layoutX="634.0" layoutY="44.0" prefHeight="25.0" prefWidth="115.0" />
-      <TextField id="p_m" layoutX="634.0" layoutY="72.0" prefHeight="25.0" prefWidth="115.0" />
-   </children>
-</AnchorPane>
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project_si.parametersWindowController">
+   <center>
+      <VBox>
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Population size:">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField id="pop_size" fx:id="populationSizeTextField" prefHeight="25.0" prefWidth="46.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Label text="Number of generations:">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets left="15.0" top="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField id="numberOfGenerationsTextField" fx:id="numberOfGenerationsTextField" prefHeight="25.0" prefWidth="46.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <top>
+      <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="930.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="310.0">
+               <children>
+                  <RadioButton id="nkb" fx:id="nkbRadioButton" ellipsisString="asdf" mnemonicParsing="false" text="NKB">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="code" />
+                     </toggleGroup>
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </VBox.margin>
+                  </RadioButton>
+                  <RadioButton id="gray" fx:id="grayRadioButton" mnemonicParsing="false" text="Gray" toggleGroup="$code">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </VBox.margin>
+                  </RadioButton>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="310.0">
+               <children>
+                  <RadioButton id="cross1" fx:id="onePointCrossoverRadioButton" mnemonicParsing="false" text="One-point crossover">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="crossover" />
+                     </toggleGroup>
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </VBox.margin>
+                  </RadioButton>
+                  <RadioButton id="cross2" fx:id="twoPointCrossoverRadioButton" mnemonicParsing="false" text="Two-point crossover" toggleGroup="$crossover" />
+                  <RadioButton id="cross3" fx:id="uniformCrossoverRadioButton" mnemonicParsing="false" text="Uniform crossover" toggleGroup="$crossover">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </VBox.margin>
+                  </RadioButton>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="310.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Crossover probability:">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField id="crossoverProbabilityTextField" fx:id="crossoverProbabilityTextField" prefHeight="25.0" prefWidth="115.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Mutation probability:">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField id="mutationProbabilityTextField" fx:id="mutationProbabilityTextField" prefHeight="25.0" prefWidth="115.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Two-variable function:">
+               <VBox.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+            </Label>
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+               <children>
+                  <Label text="F(x,y):">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="twoVariableFunctionTextField" prefHeight="25.0" prefWidth="115.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="MinX:">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+                  <TextField id="minX" fx:id="minXTextField" prefHeight="25.0" prefWidth="30.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </TextField>
+                  <Label text="MinY:">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField id="minY" fx:id="minYTextField" prefHeight="25.0" prefWidth="30.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="MaxX:">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+                  <TextField id="maxX" fx:id="maxXTextField" prefHeight="17.0" prefWidth="30.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </TextField>
+                  <Label text="MaxY:">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField id="maxYTextFiel" fx:id="maxYTextField" prefHeight="25.0" prefWidth="30.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </TextField>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </left>
+   <bottom>
+      <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button id="closeButton" fx:id="saveButton" cancelButton="true" mnemonicParsing="false" prefHeight="37.0" prefWidth="76.0" text="Save">
+               <padding>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+               </padding>
+            </Button>
+            <Button id="closeButton" fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" text="Cancel">
+               <padding>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+               </padding>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

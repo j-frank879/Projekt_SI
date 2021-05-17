@@ -5,23 +5,30 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import java.awt.*;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class parametersWindowController implements Initializable  {
+public class parametersWindowController implements Initializable {
     public Data data;
     @FXML
-    public RadioButton nkb,gray;
+    public RadioButton nkbRadioButton, grayRadioButton;
     @FXML
-    public RadioButton cross1,cross2,cross3;
+    public RadioButton onePointCrossoverRadioButton, twoPointCrossoverRadioButton, uniformCrossoverRadioButton;
     @FXML
-    public TextField minX,maxX,minY,maxY,pop_size,num_gen,p_cross,p_m,function;
+    public TextField minXTextField, maxXTextField, minYTextField, maxYTextField;
     @FXML
-    public Button closeButton;
+    public TextField populationSizeTextField, numberOfGenerationsTextField;
+    @FXML
+    public TextField crossoverProbabilityTextField, mutationProbabilityTextField;
+    @FXML
+    public TextField twoVariableFunctionTextField;
+    @FXML
+    public Button cancelButton, saveButton;
 
-    public void setData(Data data){
+    public void setData(Data data) {
         this.data = data;
     }
 
@@ -29,8 +36,8 @@ public class parametersWindowController implements Initializable  {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
-public void init()
-{
+
+    public void init() {
    /* if(data.code==0)
 {
     nkb.setSelected(true);
@@ -63,12 +70,12 @@ else if(data.code==1)
     num_gen.setText(String.valueOf(data.generation));
 
 */
-}
+    }
 
     public void handleCloseButtonAction(ActionEvent event) {
 
 
-        int x=0; //0-data prawidlowe 1-niepoprawne data
+        int x = 0; //0-data prawidlowe 1-niepoprawne data
        /* if(nkb.isSelected())
         {data.code=0;
         }
@@ -128,8 +135,8 @@ else if(data.code==1)
 
         data.size_population=Integer.parseInt(pop_size.getText());
         data.generation=Integer.parseInt(num_gen.getText());*/
-        if(x==0)
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        if (x == 0)
+            ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
     }
 }
 

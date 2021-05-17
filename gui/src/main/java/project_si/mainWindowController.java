@@ -47,21 +47,21 @@ public class mainWindowController {
             Stage stage = new Stage();
             stage.setTitle("Parameters");
             stage.setScene(new Scene(root1));
-            stage.show();
+            stage.showAndWait();
         } catch (IOException aE) {
             aE.printStackTrace();
         }
     }
 
     private void nextGenerationButtonClicked() {
-
+        System.out.println("nextGenerationClicked!");
     }
 
     private void lastGenerationButtonClicked() {
-
+        System.out.println("lastGenerationClicked!");
     }
 
     private void startButtonClicked() {
-
+        System.out.println("startClicked!");
     }
 }
