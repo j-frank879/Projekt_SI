@@ -8,20 +8,45 @@ public class Data {
     //0-NKB
     //1-Gray
     private Coding kindOfCoding;
-    private int kindOfCrossing;
+    private Crossover kindOfCrossing;
     private double probabilityOfCrossover;
     private double probabilityOfMutation;
     private int sizeOfPopulation;
+    private int numberOfGeneration;
     private String twoVariablesFunction;
-    private int minX = 0, maxX = 0, minY = 0, maxY = 0;
-    int numberOfGeneration;
+    private int minX, maxX, minY, maxY;
 
     //length of binary word example 01101 bin_lenght=5
-    int lengthOfBinaryWord;
+    private int lengthOfBinaryWord;
 
     //population saved in code
-    ArrayList<Individual> dane = new ArrayList<>();
+    private ArrayList<Individual> dane = new ArrayList<>();
 
+    Data(){ //TODO set default values
+        this(Coding.NKB, Crossover.ONE_POINT,0,0,0,0,"x+y",0,0,0,0);
+    }
+
+    Data(Coding aKindOfCoding, Crossover aKindOfCrossing, double aProbabilityOfCrossover, double aProbabilityOfMutation, int aSizeOfPopulation, int aNumberOfGeneration, String aTwoVariablesFunction, int aMinX, int aMaxX, int aMinY, int aMaxY) {
+        kindOfCoding = aKindOfCoding;
+        kindOfCrossing = aKindOfCrossing;
+        probabilityOfCrossover = aProbabilityOfCrossover;
+        probabilityOfMutation = aProbabilityOfMutation;
+        sizeOfPopulation = aSizeOfPopulation;
+        numberOfGeneration = aNumberOfGeneration;
+        twoVariablesFunction = aTwoVariablesFunction;
+        minX = aMinX;
+        maxX = aMaxX;
+        minY = aMinY;
+        maxY = aMaxY;
+
+        settingNotSetParameters();
+    }
+
+    private void settingNotSetParameters() {
+        if(kindOfCoding == null) kindOfCoding = Coding.NKB;
+        if(kindOfCrossing == null) kindOfCrossing = Crossover.ONE_POINT;
+        if(twoVariablesFunction == null) twoVariablesFunction = "x+y";
+    }
 
     void set_bin_length() {
         int a = (maxX > maxY) ? maxX : maxY;
