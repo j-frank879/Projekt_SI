@@ -44,12 +44,12 @@
          <children>
             <HBox prefHeight="31.0" prefWidth="467.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="56.0" text="Start" />
+                  <Button id="startButton" fx:id="startButton" mnemonicParsing="false" prefHeight="34.0" prefWidth="56.0" text="Start" />
                </children>
             </HBox>
             <HBox alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="31.0" prefWidth="467.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="64.0" text="Exit" />
+                  <Button id="exitButton" fx:id="exitButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="64.0" text="Exit" />
                </children>
             </HBox>
          </children>

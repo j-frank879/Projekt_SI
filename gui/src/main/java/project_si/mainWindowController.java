@@ -10,21 +10,31 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static javafx.application.Platform.exit;
+
 public class mainWindowController {
 
-   public Data data=new Data();
+    public Data data=new Data();
+
     @FXML
     Button nextGenerationButton;
     @FXML
     Button parametersButton;
     @FXML
     Button lastGenerationButton;
+    @FXML
+    Button startButton;
+    @FXML
+    Button exitButton;
+
 
     @FXML
     void initialize(){
         parametersButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x-> parametersButtonClicked());
         nextGenerationButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x-> nextGenerationButtonClicked());
         lastGenerationButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x->  lastGenerationButtonClicked());
+        startButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x->  startButtonClicked());
+        exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x->  exit());
     }
 
     private void parametersButtonClicked() {
@@ -51,4 +61,7 @@ public class mainWindowController {
 
     }
 
+    private void startButtonClicked() {
+
+    }
 }
