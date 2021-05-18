@@ -52,12 +52,12 @@ public class ParametersButton extends Button {
         prepareCenter(center, aData);
         prepareBottom(bottom);
         parametersWindow.showAndWait();
-        aData = savingParametersInData(aData);
+        Data resultData = savingParametersInData();
 
-        return aData;
+        return resultData;
     }
 
-    private Data savingParametersInData(Data aData) {
+    private Data savingParametersInData() {
         Coding kindOfCoding;
         Crossover kindOfCrossing;
         double probabilityOfCrossover;
@@ -85,7 +85,7 @@ public class ParametersButton extends Button {
         minY = minYTextField.getValue();
         maxY = maxYTextField.getValue();
 
-        aData = new Data.Builder()
+        Data resultData = new Data.Builder()
                 .kindOfCoding(kindOfCoding)
                 .kindOfCrossing(kindOfCrossing)
                 .probabilityOfCrossover(probabilityOfCrossover)
@@ -99,7 +99,7 @@ public class ParametersButton extends Button {
                 .maxY(maxY)
                 .build();
 
-        return aData;
+        return resultData;
     }
 
     private void prepareTop(HBox aTop, Data aData) {
