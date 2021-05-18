@@ -14,9 +14,10 @@ public class ParametersButton extends Button {
     private Stage parametersWindow;
     private boolean saving;
 
+    private DoubleField crossoverProbabilityTextField;
+    private DoubleField mutationProbabilityTextField;
+
     private TextField twoVariablesFunctionTextField;
-    private IntField crossoverProbabilityTextField;
-    private IntField mutationProbabilityTextField;
     private IntField populationSizeTextField;
     private IntField numberOfGenerationsTextField;
     private IntField minXTextField;
@@ -136,13 +137,13 @@ public class ParametersButton extends Button {
         VBox vBoxForCrossover = new VBox(10,onePointCrossover,twoPointCrossover,uniformCrossover);
         vBoxForCrossover.setAlignment(Pos.CENTER);
 
-        crossoverProbabilityTextField = new IntField(-1000,1000,0);
-        crossoverProbabilityTextField.setValue((int) aData.getProbabilityOfCrossover()); //TODO change to double
+        crossoverProbabilityTextField = new DoubleField(0,1,0.2);
+        crossoverProbabilityTextField.setValue(aData.getProbabilityOfCrossover()); //TODO change to double
         HBox hBoxCrossoverProbability = new HBox(5,new Label("Crossover Probability"),crossoverProbabilityTextField);
         hBoxCrossoverProbability.setAlignment(Pos.CENTER);
 
-        mutationProbabilityTextField = new IntField(-1000,1000,0);
-        mutationProbabilityTextField.setValue((int) aData.getProbabilityOfMutation()); //TODO change to double
+        mutationProbabilityTextField = new DoubleField(0,1,0.2);
+        mutationProbabilityTextField.setValue(aData.getProbabilityOfMutation()); //TODO change to double
         HBox hBoxMutationProbability = new HBox(5,new Label("Mutation Probability"),mutationProbabilityTextField);
         hBoxMutationProbability.setAlignment(Pos.CENTER);
 
