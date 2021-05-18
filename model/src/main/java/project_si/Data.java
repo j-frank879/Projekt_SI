@@ -18,6 +18,10 @@ public class Data {
     //population saved in code
     private ArrayList<Individual> dane = new ArrayList<>();
 
+    Data(){
+
+    }
+
     Data(Coding aKindOfCoding, Crossover aKindOfCrossing, double aProbabilityOfCrossover, double aProbabilityOfMutation, int aSizeOfPopulation,
          int aNumberOfGeneration, String aTwoVariablesFunction, int aMinX, int aMaxX, int aMinY, int aMaxY) {
         kindOfCoding = aKindOfCoding;
