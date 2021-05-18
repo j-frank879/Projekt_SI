@@ -17,7 +17,7 @@ public class ExampleTest {
     @Test
     void inBinaryShouldBe1111FromDecimal(){
         int x = 15;
-        Data data = new Data();
+        Data data = new Data.Builder().build();
         String result = data.decimal_to_binary(x);
 
         assertTrue(result.equals("1111"));

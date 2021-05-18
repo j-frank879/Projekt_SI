@@ -16,7 +16,7 @@ import static javafx.application.Platform.exit;
 
 public class mainWindowController {
 
-    public Data data=new Data();
+    public Data data=new Data.Builder().build();
 
     @FXML
     Button nextGenerationButton;

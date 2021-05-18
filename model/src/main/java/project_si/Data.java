@@ -18,9 +18,6 @@ public class Data {
     //population saved in code
     private ArrayList<Individual> dane = new ArrayList<>();
 
-    Data(){
-
-    }
 
     Data(Coding aKindOfCoding, Crossover aKindOfCrossing, double aProbabilityOfCrossover, double aProbabilityOfMutation, int aSizeOfPopulation,
          int aNumberOfGeneration, String aTwoVariablesFunction, int aMinX, int aMaxX, int aMinY, int aMaxY) {
@@ -278,7 +275,7 @@ public class Data {
     ArrayList<Individual> getDane() {
         return dane;
     }
-    public class Builder{
+    public static class Builder{
 
         Coding kindOfCoding;
         Crossover kindOfCrossing;
@@ -354,7 +351,7 @@ public class Data {
 
             Data resultData = new Data(kindOfCoding,kindOfCrossing,probabilityOfCrossover,probabilityOfMutation,sizeOfPopulation,
                     numberOfGeneration,twoVariablesFunction,minX,maxX,minY,maxY);
-            resultData.setLengthOfBinaryTheGreatestWord(lengthOfBinaryTheGreatestWord);
+            resultData.setLengthOfBinaryTheGreatestWord(lengthOfBinaryWord);
 
             return resultData;
         }
