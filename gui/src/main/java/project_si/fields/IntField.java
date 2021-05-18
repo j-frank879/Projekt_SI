@@ -1,4 +1,4 @@
-package project_si;
+package project_si.fields;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -10,7 +10,7 @@ import javafx.scene.input.KeyEvent;
 
 // helper text field subclass which restricts text input to a given range of natural int numbers
 // and exposes the current numeric int value of the edit box as a value property.
-class IntField extends TextField {
+public class IntField extends TextField {
     final private IntegerProperty value;
     final private int minValue;
     final private int maxValue;
@@ -20,7 +20,7 @@ class IntField extends TextField {
     public void setValue(int newValue)     { value.setValue(newValue); }
     public IntegerProperty valueProperty() { return value; }
 
-    IntField(int minValue, int maxValue, int initialValue) {
+    public IntField(int minValue, int maxValue, int initialValue) {
         if (minValue > maxValue)
             throw new IllegalArgumentException(
                     "IntField min value " + minValue + " greater than max value " + maxValue

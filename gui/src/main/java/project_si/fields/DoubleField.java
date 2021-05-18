@@ -1,4 +1,4 @@
-package project_si;
+package project_si.fields;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -10,7 +10,7 @@ import javafx.scene.input.KeyEvent;
 
 // helper text field subclass which restricts text input to a given range of natural double numbers
 // and exposes the current numeric double value of the edit box as a value property.
-class DoubleField extends TextField {
+public class DoubleField extends TextField {
     final private DoubleProperty value;
     final private double minValue;
     final private double maxValue;
@@ -20,7 +20,7 @@ class DoubleField extends TextField {
     public void setValue(double newValue)     { value.setValue(newValue); }
     public DoubleProperty valueProperty() { return value; }
 
-    DoubleField(double minValue, double maxValue, double initialValue) {
+    public DoubleField(double minValue, double maxValue, double initialValue) {
         if (minValue > maxValue)
             throw new IllegalArgumentException(
                     "Double min value " + minValue + " greater than max value " + maxValue
