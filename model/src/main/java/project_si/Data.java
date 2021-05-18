@@ -343,12 +343,12 @@ public class Data {
             if(sizeOfPopulation == null) sizeOfPopulation = 0;
             if(numberOfGeneration == null) numberOfGeneration = 0;
             if(twoVariablesFunction == null) twoVariablesFunction = "x+y";
-            if(lengthOfBinaryWord == null) lengthOfBinaryWord = 0;
+            if(lengthOfBinaryWord == null) lengthOfBinaryWord = 4;
             if(minX == null) minX = 0;
             if(maxX == null) maxX = 0;
             if(minY == null) minY = 0;
             if(maxY == null) maxY = 0;
-
+            //TODO what default value should be here
             Data resultData = new Data(kindOfCoding,kindOfCrossing,probabilityOfCrossover,probabilityOfMutation,sizeOfPopulation,
                     numberOfGeneration,twoVariablesFunction,minX,maxX,minY,maxY);
             resultData.setLengthOfBinaryTheGreatestWord(lengthOfBinaryWord);

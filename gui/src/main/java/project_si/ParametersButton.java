@@ -11,8 +11,7 @@ import javafx.stage.Stage;
 
 public class ParametersButton extends Button {
 
-    private Stage parametersWindow = new Stage();
-    private Data dataWithParameters;
+    private Stage parametersWindow;
     private boolean saving;
 
     private TextField twoVariablesFunctionTextField;
@@ -25,61 +24,125 @@ public class ParametersButton extends Button {
     private IntField maxXTextField;
     private IntField maxYTextField;
 
+    private RadioButton nkbRadioButton;
+    private RadioButton grayRadioButton;
+
+    private RadioButton onePointCrossover;
+    private RadioButton twoPointCrossover;
+    private RadioButton uniformCrossover;
+
     ParametersButton(String text, mainWindowController aMainWindowController) {
         super(text);
         setFont(Font.font(15));
         addEventFilter(MouseEvent.MOUSE_CLICKED, x -> {
-            showParametersWindowAndSetWhetherSaveParameters();
-            if(saving){
-
-                aMainWindowController.setData(dataWithParameters);
-            }
+            Data startData = aMainWindowController.getData();
+            Data resultData = showParametersWindowAndSetWhetherSaveParameters(startData);
+            if(saving) aMainWindowController.setData(resultData);
         });
     }
 
-    private void showParametersWindowAndSetWhetherSaveParameters() {
+    private Data showParametersWindowAndSetWhetherSaveParameters(Data aData) {
         HBox top = new HBox();
         VBox left = new VBox(20);
         VBox center = new VBox(20);
         HBox bottom = new HBox();
         prepareParametersWindow(top,left,center,bottom);
-        prepareTop(top);
-        prepareLeft(left);
-        prepareCenter(center);
+        prepareTop(top,aData);
+        prepareLeft(left, aData);
+        prepareCenter(center, aData);
         prepareBottom(bottom);
         parametersWindow.showAndWait();
+        aData = savingParametersInData(aData);
+
+        return aData;
     }
 
-    private void prepareTop(HBox aTop) {
+    private Data savingParametersInData(Data aData) {
+        Coding kindOfCoding;
+        Crossover kindOfCrossing;
+        double probabilityOfCrossover;
+        double probabilityOfMutation;
+        int sizeOfPopulation;
+        int numberOfGeneration;
+        String twoVariablesFunction;
+        int minX, maxX, minY, maxY;
+
+        if(nkbRadioButton.isSelected()) kindOfCoding = Coding.NKB;
+        else kindOfCoding = Coding.GRAY;
+
+        if(onePointCrossover.isSelected()) kindOfCrossing = Crossover.ONE_POINT;
+        else if (twoPointCrossover.isSelected()) kindOfCrossing = Crossover.TWO_POINT;
+        else kindOfCrossing = Crossover.UNIFORM;
+
+        probabilityOfCrossover = crossoverProbabilityTextField.getValue();
+        probabilityOfMutation = mutationProbabilityTextField.getValue();
+        sizeOfPopulation = populationSizeTextField.getValue();
+        numberOfGeneration = numberOfGenerationsTextField.getValue();
+        twoVariablesFunction = twoVariablesFunctionTextField.getText();
+
+        minX = minXTextField.getValue();
+        maxX = maxXTextField.getValue();
+        minY = minYTextField.getValue();
+        maxY = maxYTextField.getValue();
+
+        aData = new Data.Builder()
+                .kindOfCoding(kindOfCoding)
+                .kindOfCrossing(kindOfCrossing)
+                .probabilityOfCrossover(probabilityOfCrossover)
+                .probabilityOfMutation(probabilityOfMutation)
+                .sizeOfPopulation(sizeOfPopulation)
+                .numberOfGeneration(numberOfGeneration)
+                .twoVariablesFunction(twoVariablesFunction)
+                .minX(minX)
+                .maxX(maxX)
+                .minY(minY)
+                .maxY(maxY)
+                .build();
+
+        return aData;
+    }
+
+    private void prepareTop(HBox aTop, Data aData) {
         aTop.setStyle("-fx-padding: 25px;");
 
-        RadioButton nkbRadioButton = new RadioButton("NKB");
-        RadioButton grayRadioButton = new RadioButton("Gray");
+        nkbRadioButton = new RadioButton("NKB");
+        grayRadioButton = new RadioButton("Gray");
+        nkbRadioButton.setUserData(Coding.NKB);
+        grayRadioButton.setUserData(Coding.GRAY);
 
         ToggleGroup coding = new ToggleGroup();
         nkbRadioButton.setToggleGroup(coding);
         grayRadioButton.setToggleGroup(coding);
 
+        if(aData.getKindOfCoding() == Coding.NKB) nkbRadioButton.setSelected(true);
+        else grayRadioButton.setSelected(true);
+
         VBox vBoxForCoding = new VBox(10,nkbRadioButton,grayRadioButton);
         vBoxForCoding.setAlignment(Pos.CENTER);
 
-        RadioButton onePointCrossover = new RadioButton("One-point crossover");
-        RadioButton twoPointCrossover = new RadioButton("Two-point crossover");
-        RadioButton uniformCrossover = new RadioButton("Uniform crossover");
+        onePointCrossover = new RadioButton("One-point crossover");
+        twoPointCrossover = new RadioButton("Two-point crossover");
+        uniformCrossover = new RadioButton("Uniform crossover");
 
         ToggleGroup crossover = new ToggleGroup();
         onePointCrossover.setToggleGroup(crossover);
         twoPointCrossover.setToggleGroup(crossover);
         uniformCrossover.setToggleGroup(crossover);
 
+        if(aData.getKindOfCrossing() == Crossover.ONE_POINT) onePointCrossover.setSelected(true);
+        else if(aData.getKindOfCrossing() == Crossover.TWO_POINT) twoPointCrossover.setSelected(true);
+        else uniformCrossover.setSelected(true);
+
         VBox vBoxForCrossover = new VBox(10,onePointCrossover,twoPointCrossover,uniformCrossover);
         vBoxForCrossover.setAlignment(Pos.CENTER);
 
         crossoverProbabilityTextField = new IntField(-1000,1000,0);
+        crossoverProbabilityTextField.setValue((int) aData.getProbabilityOfCrossover()); //TODO change to double
         HBox hBoxCrossoverProbability = new HBox(5,new Label("Crossover Probability"),crossoverProbabilityTextField);
         hBoxCrossoverProbability.setAlignment(Pos.CENTER);
 
         mutationProbabilityTextField = new IntField(-1000,1000,0);
+        mutationProbabilityTextField.setValue((int) aData.getProbabilityOfMutation()); //TODO change to double
         HBox hBoxMutationProbability = new HBox(5,new Label("Mutation Probability"),mutationProbabilityTextField);
         hBoxMutationProbability.setAlignment(Pos.CENTER);
 
@@ -98,23 +161,28 @@ public class ParametersButton extends Button {
         aTop.getChildren().addAll(regionLeft,vBoxForCoding,regionCenterLeft,vBoxForCrossover,regionCenterRight,vBoxForProbability,regionRight);
     }
 
-    private void prepareLeft(VBox aLeft) {
+    private void prepareLeft(VBox aLeft, Data aData) {
         aLeft.setStyle("-fx-padding: 30px;");
 
-        twoVariablesFunctionTextField = new IntField(-1000,1000,0);
+        twoVariablesFunctionTextField = new TextField();
+        twoVariablesFunctionTextField.setText(aData.getTwoVariablesFunction());
         HBox twoVariablesFunction = new HBox(5,new Label("F(x,y):"),twoVariablesFunctionTextField);
         twoVariablesFunction.setAlignment(Pos.CENTER);
 
         minXTextField = new IntField(-1000,1000,0);
+        minXTextField.setValue(aData.getMinX());
         minXTextField.setPrefWidth(50);
         minYTextField = new IntField(-1000,1000,0);
+        minYTextField.setValue(aData.getMinY());
         minYTextField.setPrefWidth(50);
         HBox minXAndMinY = new HBox(5,new Label("MinX:"),minXTextField,new Label("MinY:"),minYTextField);
         minXAndMinY.setAlignment(Pos.CENTER);
 
         maxXTextField = new IntField(-1000,1000,0);
+        maxXTextField.setValue(aData.getMaxX());
         maxXTextField.setPrefWidth(50);
         maxYTextField = new IntField(-1000,1000,0);
+        maxYTextField.setValue(aData.getMaxY());
         maxYTextField.setPrefWidth(50);
         HBox maxXAndMaxY = new HBox(5,new Label("MaxX:"),maxXTextField,new Label("MaxY:"),maxYTextField);
         maxXAndMaxY.setAlignment(Pos.CENTER);
@@ -122,12 +190,14 @@ public class ParametersButton extends Button {
         aLeft.getChildren().addAll(new Label("Two-variable function:"),twoVariablesFunction,minXAndMinY,maxXAndMaxY);
     }
 
-    private void prepareCenter(VBox aCenter) {
+    private void prepareCenter(VBox aCenter, Data aData) {
         populationSizeTextField = new IntField(-1000,1000,0);
+        populationSizeTextField.setValue(aData.getSizeOfPopulation());
         HBox populationSize = new HBox(5,new Label("Population size:"),populationSizeTextField);
         populationSize.setAlignment(Pos.CENTER);
 
         numberOfGenerationsTextField = new IntField(-1000,1000,0);
+        numberOfGenerationsTextField.setValue(aData.getNumberOfGeneration());
         HBox numberOfGenerations = new HBox(5,new Label("Number of generation:"),numberOfGenerationsTextField);
         numberOfGenerations.setAlignment(Pos.CENTER);
 

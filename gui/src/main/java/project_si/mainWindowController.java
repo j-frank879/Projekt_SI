@@ -16,10 +16,11 @@ import static javafx.application.Platform.exit;
 
 public class mainWindowController {
 
-    public Data data=new Data.Builder().build();
+    public Data data;
 
     @FXML
     Button nextGenerationButton;
+
     @FXML
     Button lastGenerationButton;
     @FXML
@@ -29,9 +30,9 @@ public class mainWindowController {
     @FXML
     HBox hBoxWhichParameterButtonIs;
 
-
     @FXML
     void initialize(){
+        data = new Data.Builder().build();
         nextGenerationButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x-> nextGenerationButtonClicked());
         lastGenerationButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x->  lastGenerationButtonClicked());
         startButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x->  startButtonClicked());
@@ -43,37 +44,6 @@ public class mainWindowController {
     private void createParametersButton() {
         ParametersButton parametersButton = new ParametersButton("Parameters",this);
         hBoxWhichParameterButtonIs.getChildren().add(parametersButton);
-    }
-
-
-    private void parametersButtonClicked(){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/parametersWindow.fxml"));
-        Stage parametersWindow = new Stage();
-        Scene scene = null;
-        try {
-            scene = new Scene(fxmlLoader.load());
-            parametersWindow.setScene(scene);
-           // parametersWindow.initOwner(parametersButton.getScene().getWindow());
-            parametersWindow.initModality(Modality.APPLICATION_MODAL);
-            parametersWindow.setTitle("Choose parameters!");
-            parametersWindow.setResizable(false);
-            parametersWindow.showAndWait();
-        } catch (IOException aE) {
-            aE.printStackTrace();
-        }
-//        Parent root = null;
-//        try {
-//            root = (Parent) fxmlLoader.load();
-//            parametersWindowController controller= fxmlLoader.getController();
-//            controller.setData(data);
-//            Stage stage = new Stage();
-//            stage.setTitle("Parameters");
-//            stage.setScene(new Scene(root));
-//            stage.showAndWait();
-//        } catch (IOException aE) {
-//            aE.printStackTrace();
-//        }
-
     }
 
     private void nextGenerationButtonClicked() {
@@ -88,6 +58,10 @@ public class mainWindowController {
     }
 
     void setData(Data aDataWithParameters) {
+        data = aDataWithParameters;
+    }
 
+    Data getData() {
+        return data;
     }
 }
