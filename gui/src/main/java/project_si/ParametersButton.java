@@ -3,6 +3,7 @@ package project_si;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
@@ -236,6 +237,7 @@ public class ParametersButton extends Button {
         parametersWindow.initModality(Modality.APPLICATION_MODAL);
         parametersWindow.setTitle("Parameters");
         parametersWindow.setResizable(false);
+        parametersWindow.getIcons().add(new Image("png/icon.png"));
         aBottom.setAlignment(Pos.BOTTOM_RIGHT);
         aCenter.setAlignment(Pos.CENTER);
         aLeft.setAlignment(Pos.CENTER);

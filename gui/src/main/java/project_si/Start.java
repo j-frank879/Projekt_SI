@@ -7,6 +7,7 @@ package project_si;/*
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.awt.Dimension;
@@ -17,6 +18,7 @@ public class Start extends Application {
     public void start(Stage stage) throws Exception {
 
         Scene scene = new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/mainWindow.fxml")));
+        stage.getIcons().add(new Image("png/icon.png"));
         stage.setTitle("Project_SI");
         stage.setScene(scene);
         stage.show();
