@@ -3,6 +3,7 @@ package project_si;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -27,6 +28,8 @@ public class mainWindowController {
     TextArea results;
     @FXML
     HBox hBoxWhichParameterButtonIs;
+    @FXML
+    RadioButton splitBetweenGenerationsRadioButton;
 
     @FXML
     void initialize() {
@@ -54,10 +57,7 @@ public class mainWindowController {
     }
 
     private void nextGenerationButtonClicked() {
-        if ((!ifStarted) || generation > data.getNumberOfGeneration())
-            return;
-        results.clear();
-        results.setText("Generation: " + generation + "\n");
+        if (!checkIfShouldSplitBetweenGenerationsAndReturnIfCanGoOn()) return;
 
         if (data.getKindOfCrossing() == Crossover.UNIFORM) {
             data.UniformCrossover(results);
@@ -73,6 +73,13 @@ public class mainWindowController {
         show_generation();
         generation++;
         if (generation > data.getNumberOfGeneration()) ifStarted = false;
+    }
+
+    private boolean checkIfShouldSplitBetweenGenerationsAndReturnIfCanGoOn() {
+        if ((!ifStarted) || generation > data.getNumberOfGeneration()) return false;
+        if(splitBetweenGenerationsRadioButton.isSelected()) results.setText("Generation: " + generation + "\n");
+        else results.appendText("Generation: " + generation + "\n");
+        return true;
     }
 
     private void lastGenerationButtonClicked() {
