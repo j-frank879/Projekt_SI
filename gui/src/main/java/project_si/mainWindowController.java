@@ -12,8 +12,9 @@ import static javafx.application.Platform.exit;
 
 public class mainWindowController {
 
-    public Data data;
-    public int generation = 0;
+    private Data data;
+    private int generation;
+    private boolean ifStarted;
     @FXML
     Button nextGenerationButton;
     @FXML
@@ -49,12 +50,12 @@ public class mainWindowController {
     private void resetButtonClicked() {
         generation = 0;
         results.clear();
+        ifStarted = false;
     }
 
     private void nextGenerationButtonClicked() {
-        if (generation > data.getNumberOfGeneration()) {
+        if ((!ifStarted) || generation > data.getNumberOfGeneration())
             return;
-        }
         results.clear();
         results.setText("Generation: " + generation + "\n");
 
@@ -71,21 +72,26 @@ public class mainWindowController {
         data.rouletteSelection();
         show_generation();
         generation++;
+        if (generation > data.getNumberOfGeneration()) ifStarted = false;
     }
 
     private void lastGenerationButtonClicked() {
+
         while (generation <= data.getNumberOfGeneration()) {
+            if(!ifStarted) break;
             nextGenerationButtonClicked();
         }
     }
 
     private void startButtonClicked() {
-        generation = 0;
-        data.makeFirstGeneration();
-        results.clear();
-        show_generation();
-        generation++;
-
+        if(!ifStarted){
+            ifStarted = true;
+            generation = 0;
+            data.makeFirstGeneration();
+            results.clear();
+            show_generation();
+            generation++;
+        }
     }
 
     void setData(Data aDataWithParameters) {
