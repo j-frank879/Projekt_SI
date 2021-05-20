@@ -12,7 +12,7 @@ import static javafx.application.Platform.exit;
 public class mainWindowController {
 
     public Data data;
- public int generation=0;
+    public int generation = 0;
     @FXML
     Button nextGenerationButton;
 
@@ -28,38 +28,37 @@ public class mainWindowController {
     HBox hBoxWhichParameterButtonIs;
 
     @FXML
-    void initialize(){
+    void initialize() {
         data = new Data.Builder().build();
-        nextGenerationButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x-> nextGenerationButtonClicked());
-        lastGenerationButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x->  lastGenerationButtonClicked());
-        startButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x->  startButtonClicked());
-        exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x->  exit());
+        nextGenerationButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x -> nextGenerationButtonClicked());
+        lastGenerationButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x -> lastGenerationButtonClicked());
+        startButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x -> startButtonClicked());
+        exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x -> exit());
 
         createParametersButton();
     }
 
     private void createParametersButton() {
-        ParametersButton parametersButton = new ParametersButton("Parameters",this);
+        ParametersButton parametersButton = new ParametersButton("Parameters", this);
         hBoxWhichParameterButtonIs.getChildren().add(parametersButton);
     }
 
     private void nextGenerationButtonClicked() {
-        if(generation>data.getNumberOfGeneration())
-        {return;}
+        if (generation > data.getNumberOfGeneration()) {
+            return;
+        }
         results.clear();
-        results.setText("Generation: " +generation+"\n");
+        results.setText("Generation: " + generation + "\n");
 
-        if(data.getKindOfCrossing()==Crossover.UNIFORM)
-        {data.UniformCrossover(results);
+        if (data.getKindOfCrossing() == Crossover.UNIFORM) {
+            data.UniformCrossover(results);
+        } else if (data.getKindOfCrossing() == Crossover.ONE_POINT) {
+            data.onePointCrossover(results);
+        } else if (data.getKindOfCrossing() == Crossover.TWO_POINT) {
+            data.twoPointCrossover(results);
         }
-        else if(data.getKindOfCrossing()==Crossover.ONE_POINT)
-        {data.onePointCrossover(results);
-        }
-        else if(data.getKindOfCrossing()==Crossover.TWO_POINT)
-        {data.twoPointCrossover(results);
-        }
-        if(data.getProbabilityOfMutation()>0)
-        {data.Mutation(results);
+        if (data.getProbabilityOfMutation() > 0) {
+            data.Mutation(results);
         }
         data.rouletteSelection();
         show_generation();
@@ -68,17 +67,17 @@ public class mainWindowController {
 
     private void lastGenerationButtonClicked() {
 
-        while(generation<=data.getNumberOfGeneration())
-       {nextGenerationButtonClicked();
+        while (generation <= data.getNumberOfGeneration()) {
+            nextGenerationButtonClicked();
 
-       }
+        }
     }
 
     private void startButtonClicked() {
-        generation=0;
+        generation = 0;
         data.makeFirstGeneration();
-       results.clear();
-       show_generation();
+        results.clear();
+        show_generation();
         generation++;
 
     }
@@ -86,18 +85,19 @@ public class mainWindowController {
     void setData(Data aDataWithParameters) {
         data = aDataWithParameters;
     }
-void show_generation()
-{results.appendText("Generation: " +generation);
-    results.appendText("\n");
-    int x=1;
-int y=2*data.getLengthOfBinaryTheGreatestWord();
-for (Individual ind1 : data.getDane())
-    {results.appendText("Osobnik: "+x+"  "+ind1.in+"  "+"X="+ind1.x+"  "+"Y="+ind1.y+"  "+"Adaptation="+ind1.adaptation+"\n");
-x++;
-    }
-    results.appendText("\n");
 
-}
+    void show_generation() {
+        results.appendText("Generation: " + generation);
+        results.appendText("\n");
+        int x = 1;
+        int y = 2 * data.getLengthOfBinaryTheGreatestWord();
+        for (Individual ind1 : data.getDane()) {
+            results.appendText("Osobnik: " + x + "  " + ind1.in + "  " + "X=" + ind1.x + "  " + "Y=" + ind1.y + "  " + "Adaptation=" + ind1.adaptation + "\n");
+            x++;
+        }
+        results.appendText("\n");
+    }
+
     Data getData() {
         return data;
     }
