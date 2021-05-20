@@ -22,7 +22,6 @@ public class Data {
     //population saved in code
     private ArrayList<Individual> dane = new ArrayList<>();
 
-
     Data(Coding aKindOfCoding, Crossover aKindOfCrossing, double aProbabilityOfCrossover, double aProbabilityOfMutation, int aSizeOfPopulation,
          int aNumberOfGeneration, String aTwoVariablesFunction, int aMinX, int aMaxX, int aMinY, int aMaxY) {
         kindOfCoding = aKindOfCoding;
@@ -36,8 +35,6 @@ public class Data {
         maxX = aMaxX;
         minY = aMinY;
         maxY = aMaxY;
-        lengthOfBinaryTheGreatestWord = 4;
-        //TODO what value should lengthOfBinaryWord have while initializing
     }
 
 
@@ -116,11 +113,8 @@ public class Data {
         }
         Random rand = new Random();
         int r = rand.nextInt(q);
-        if (r < x) {
-            return true;
-        } else
-            return false;
-
+        if (r < x) return true;
+        else return false;
     }
     //generating first generation in dane list
 
@@ -136,13 +130,10 @@ public class Data {
                     next.in = decimal_to_binary(i) + decimal_to_binary(j);
                 else
                     next.in = binary_to_gray(decimal_to_binary(i)) + binary_to_gray(decimal_to_binary(j));
-
                 next.adaptation(twoVariablesFunction);
                 dane.add(new Individual(next));
             }
         }
-
-
     }
 
     void Mutation(TextArea results) {
@@ -157,16 +148,15 @@ public class Data {
                 x = 1;
                 temp = ind1.in;
 
-                if ((Character.compare(temp.charAt(p), '0')) == 0) {
+                if (temp.charAt(p) == '0') {
                     ind1.in = temp.substring(0, p) + '1';
                     if (p + 1 < s)
                         ind1.in += temp.substring(p + 1);
-                } else if ((Character.compare(temp.charAt(p), '1')) == 0) {
+                } else if (temp.charAt(p) == '1') {
                     ind1.in = temp.substring(0, p) + '0';
                     if (p + 1 < s)
                         ind1.in += temp.substring(p + 1);
                 }
-
 
                 if (kindOfCoding == Coding.NKB) {
                     ind1.x = bin_to_decimal(ind1.in.substring(0, lengthOfBinaryTheGreatestWord));
@@ -176,9 +166,7 @@ public class Data {
                     ind1.x = gray_to_decimal(ind1.in.substring(0, lengthOfBinaryTheGreatestWord));
                     ind1.y = gray_to_decimal(ind1.in.substring(lengthOfBinaryTheGreatestWord));
                 }
-
                 ind1.adaptation(twoVariablesFunction);
-
             }
             if (x == 1) {
                 results.appendText(temp + " | " + ind1.in + "\n");
@@ -216,8 +204,6 @@ public class Data {
                 next.adaptation(twoVariablesFunction);
                 new_gen.add(new Individual(next));
                 results.appendText(next.in + "\n");
-
-
             }
             j = -1;
         }

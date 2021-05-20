@@ -7,14 +7,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="project_si.mainWindowController">
+<BorderPane prefHeight="652.0" prefWidth="934.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project_si.mainWindowController">
     <center>
         <AnchorPane prefHeight="570.0" prefWidth="934.0">
             <children>
-                <TextArea fx:id="results" editable="false" layoutX="35.0" layoutY="18.0" prefHeight="552.0"
-                          prefWidth="854.0" styleClass="centeredTextArea" stylesheets="@../css/main.css"
-                          wrapText="true"/>
+                <TextArea fx:id="results" editable="false" layoutX="35.0" layoutY="18.0" prefHeight="552.0" prefWidth="854.0" styleClass="centeredTextArea" stylesheets="@../css/main.css" wrapText="true" />
             </children>
         </AnchorPane>
     </center>
@@ -23,19 +20,19 @@
             <children>
                 <Button fx:id="startButton" mnemonicParsing="false" text="Start">
                     <font>
-                        <Font size="15.0"/>
+                        <Font size="15.0" />
                     </font>
 
                 </Button>
                 <Button fx:id="nextGenerationButton" mnemonicParsing="false" text="NextGeneration">
                     <font>
-                        <Font size="15.0"/>
+                        <Font size="15.0" />
                     </font>
 
                 </Button>
                 <Button fx:id="lastGenerationButton" mnemonicParsing="false" text="LastGeneration">
                     <font>
-                        <Font size="15.0"/>
+                        <Font size="15.0" />
                     </font>
 
                 </Button>
@@ -45,14 +42,12 @@
     <bottom>
         <HBox prefHeight="31.0" prefWidth="934.0" BorderPane.alignment="CENTER">
             <children>
-                <HBox fx:id="hBoxWhichParameterButtonIs" prefWidth="467.0"/>
-                <HBox alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                      prefHeight="31.0" prefWidth="467.0">
+                <HBox fx:id="hBoxWhichParameterButtonIs" prefWidth="467.0" />
+                <HBox alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="31.0" prefWidth="467.0">
                     <children>
-                        <Button id="exitButton" fx:id="exitButton" mnemonicParsing="false" prefHeight="43.0"
-                                prefWidth="64.0" text="Exit">
+                        <Button id="exitButton" fx:id="exitButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="64.0" text="Exit">
                             <font>
-                                <Font size="15.0"/>
+                                <Font size="15.0" />
                             </font>
                         </Button>
                     </children>

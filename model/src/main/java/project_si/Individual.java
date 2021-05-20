@@ -29,8 +29,6 @@ public class Individual {
 
     //calculating adaptation
     void adaptation(String twoVariablesFunction) {
-
-
         Expression e = new ExpressionBuilder(twoVariablesFunction)
                 .variables("x", "y")
                 .build()

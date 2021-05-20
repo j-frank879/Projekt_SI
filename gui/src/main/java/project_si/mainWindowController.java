@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 
 import static javafx.application.Platform.exit;
 
@@ -15,7 +16,6 @@ public class mainWindowController {
     public int generation = 0;
     @FXML
     Button nextGenerationButton;
-
     @FXML
     Button lastGenerationButton;
     @FXML
@@ -35,12 +35,20 @@ public class mainWindowController {
         startButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x -> startButtonClicked());
         exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x -> exit());
 
-        createParametersButton();
+        createParametersAndResetButtons();
     }
 
-    private void createParametersButton() {
+    private void createParametersAndResetButtons() {
         ParametersButton parametersButton = new ParametersButton("Parameters", this);
-        hBoxWhichParameterButtonIs.getChildren().add(parametersButton);
+        Button resetButton = new Button("Reset");
+        resetButton.setFont(Font.font(15));
+        resetButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x -> resetButtonClicked());
+        hBoxWhichParameterButtonIs.getChildren().addAll(parametersButton,resetButton);
+    }
+
+    private void resetButtonClicked() {
+        generation = 0;
+        results.clear();
     }
 
     private void nextGenerationButtonClicked() {
@@ -66,10 +74,8 @@ public class mainWindowController {
     }
 
     private void lastGenerationButtonClicked() {
-
         while (generation <= data.getNumberOfGeneration()) {
             nextGenerationButtonClicked();
-
         }
     }
 
