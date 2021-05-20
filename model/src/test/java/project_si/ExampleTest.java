@@ -22,7 +22,13 @@ public class ExampleTest {
 
         assertTrue(result.equals("1111"));
     }
-
+    @Test
+    void inDecimalShouldBe15FromGray(){
+        String x = "10001";
+        Data data = new Data.Builder().build();
+        int result = data.gray_to_decimal(x);
+        assertTrue(result==15);
+    }
     @Test
     void Library(){
         String equation = "2cos(xy)";

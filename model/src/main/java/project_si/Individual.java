@@ -1,5 +1,8 @@
 package project_si;
 
+import net.objecthunter.exp4j.Expression;
+import net.objecthunter.exp4j.ExpressionBuilder;
+
 public class Individual {
 
     int adaptation;
@@ -25,8 +28,16 @@ public class Individual {
     }
 
     //calculating adaptation
-    void adaptation() {
-        this.adaptation = x * x - y * y;
+    void adaptation(String twoVariablesFunction) {
+
+
+        Expression e = new ExpressionBuilder(twoVariablesFunction)
+                .variables("x", "y")
+                .build()
+                .setVariable("x", x)
+                .setVariable("y", y);
+
+        this.adaptation = (int) e.evaluate();
     }
 
 }

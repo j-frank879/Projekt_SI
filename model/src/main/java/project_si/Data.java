@@ -1,5 +1,7 @@
 package project_si;
-
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -89,8 +91,10 @@ public class Data {
             }
 
         }
+        b =b.substring(0,b.length()-1);
 
         a = bin_to_decimal(b);
+
         return a;
     }
 
@@ -131,19 +135,60 @@ public class Data {
                 else
                     next.in = binary_to_gray(decimal_to_binary(i)) + binary_to_gray(decimal_to_binary(j));
 
-                next.adaptation();
+                next.adaptation(twoVariablesFunction);
                 dane.add(new Individual(next));
             }
         }
 
 
     }
-    void onePointCrossover() {
+    void Mutation(TextArea results)
+    {  int s=2*lengthOfBinaryTheGreatestWord;
+        String temp="";
+        int x=0;
+        results.appendText("Mutation: \n");
+    for (Individual ind1 : dane)
+    {
+        for(int p=0;p<s;p++)
+        { if(!(probability(probabilityOfMutation)))
+            continue;
+        x=1;
+             temp=ind1.in;
+
+         if((Character.compare(temp.charAt(p), '0'))==0) {
+             ind1.in= temp.substring(0,p)+'1';
+             if(p+1<s)
+                 ind1.in+=temp.substring(p+1);
+         }
+         else if((Character.compare(temp.charAt(p), '1'))==0)
+         {ind1.in=temp.substring(0,p)+'0';
+             if(p+1<s)
+                 ind1.in+=temp.substring(p+1);}
+
+
+         if(kindOfCoding==Coding.NKB)
+        {ind1.x=bin_to_decimal(ind1.in.substring(0,lengthOfBinaryTheGreatestWord));
+
+            ind1.y =bin_to_decimal(ind1.in.substring(lengthOfBinaryTheGreatestWord));
+        }
+        else
+        {ind1.x=gray_to_decimal(ind1.in.substring(0,lengthOfBinaryTheGreatestWord));
+            ind1.y =gray_to_decimal(ind1.in.substring(lengthOfBinaryTheGreatestWord));
+        }
+
+ind1.adaptation(twoVariablesFunction);
+
+    }
+if(x==1)
+{results.appendText(temp+" | "+ind1.in+"\n");x=0;}
+    }
+    }
+    void onePointCrossover(TextArea results) {
         ArrayList<Individual> new_gen = new ArrayList<>();
 
         Individual next = new Individual();
         //crossing
-        int s = lengthOfBinaryTheGreatestWord * 2 - 1;
+        results.appendText("One-point Crossover: \n");
         int i = -1;
         int j = -1;
 
@@ -154,27 +199,131 @@ public class Data {
                 if ((j < i) || (!(probability(probabilityOfCrossover))))
                     continue;
                 //first
-                next.in = ind1.in.substring(0, lengthOfBinaryTheGreatestWord - 1) + ind2.in.substring(lengthOfBinaryTheGreatestWord, s);
+                next.in = ind1.in.substring(0, lengthOfBinaryTheGreatestWord ) + ind2.in.substring(lengthOfBinaryTheGreatestWord);
                 next.x = ind1.x;
                 next.y = ind2.y;
-                next.adaptation();
+                next.adaptation(twoVariablesFunction);
                 new_gen.add(new Individual(next));
+                results.appendText(ind1.in+"  "+ind2.in+" | "+next.in+"  ");
                 //second
-                next.in = ind2.in.substring(0, lengthOfBinaryTheGreatestWord - 1) + ind1.in.substring(lengthOfBinaryTheGreatestWord, s);
+                next.in = ind2.in.substring(0, lengthOfBinaryTheGreatestWord ) + ind1.in.substring(lengthOfBinaryTheGreatestWord);
                 next.x = ind2.x;
                 next.y = ind1.y;
-                next.adaptation();
+                next.adaptation(twoVariablesFunction);
                 new_gen.add(new Individual(next));
+                results.appendText(next.in+"\n");
+
 
             }
             j = -1;
         }
         for (Individual x : new_gen) {
-            dane.add(x);
+            dane.add(new Individual(x));
         }
+        new_gen.clear();
     }
+    void twoPointCrossover(TextArea results) {
+        ArrayList<Individual> new_gen = new ArrayList<>();
 
-    //roulette  selection
+        Individual next = new Individual();
+        //crossing
+        results.appendText("Two-point Crossover: \n");
+        int mix_size= (int) Math.ceil(lengthOfBinaryTheGreatestWord * 2/3);
+        int point1=(2*lengthOfBinaryTheGreatestWord-1-mix_size)/2-1;
+        int point2=point1+mix_size;
+        int i = -1;
+        int j = -1;
+
+        for (Individual ind1 : dane) {
+            i++;
+            for (Individual ind2 : dane) {
+                j++;
+                if ((j < i) || (!(probability(probabilityOfCrossover))))
+                    continue;
+                //first
+                next.in = ind1.in.substring(0, point1) + ind2.in.substring(point1,point2)+ind1.in.substring(point2);
+                if(kindOfCoding==Coding.NKB)
+                {next.x=bin_to_decimal(next.in.substring(0,lengthOfBinaryTheGreatestWord));
+                    next.y =bin_to_decimal(next.in.substring(lengthOfBinaryTheGreatestWord));
+                }
+                else
+                {next.x=gray_to_decimal(next.in.substring(0,lengthOfBinaryTheGreatestWord));
+                    next.y =gray_to_decimal(next.in.substring(lengthOfBinaryTheGreatestWord));
+                }
+                next.adaptation(twoVariablesFunction);
+                new_gen.add(new Individual(next));
+                results.appendText(ind1.in+"  "+ind2.in+" | "+next.in+"  ");
+                //second
+                next.in = ind2.in.substring(0, point1) + ind1.in.substring(point1,point2)+ind2.in.substring(point2);
+                if(kindOfCoding==Coding.NKB)
+                {next.x=bin_to_decimal(next.in.substring(0,lengthOfBinaryTheGreatestWord));
+                    next.y =bin_to_decimal(next.in.substring(lengthOfBinaryTheGreatestWord));
+                }
+                else
+                {next.x=gray_to_decimal(next.in.substring(0,lengthOfBinaryTheGreatestWord));
+                    next.y =gray_to_decimal(next.in.substring(lengthOfBinaryTheGreatestWord));
+                }
+                next.adaptation(twoVariablesFunction);
+                new_gen.add(new Individual(next));
+                results.appendText(next.in+"\n");
+
+            }
+            j = -1;
+        }
+        for (Individual x : new_gen) {
+            dane.add(new Individual(x));
+        }
+        new_gen.clear();
+    }
+    void UniformCrossover(TextArea results) {
+        ArrayList<Individual> new_gen = new ArrayList<>();
+
+        Individual next = new Individual();
+        Individual next1 = new Individual();
+
+        //crossing
+        int s = lengthOfBinaryTheGreatestWord * 2 ;
+        int i = -1;
+        int j = -1;
+        results.appendText("Uniform Crossover: \n");
+        for (Individual ind1 : dane) {
+            i++;
+            for (Individual ind2 : dane) {
+                j++;
+                if ((j < i) || (!(probability(probabilityOfCrossover))))
+                    continue;
+                next.in=next1.in="";
+                for(int p=0;p<s;p++)
+                {next.in+= ind1.in.charAt(p);
+                    next1.in+= ind2.in.charAt(p);
+                    p++;
+                    if(p>s)
+                        break;
+                    next.in+= ind2.in.charAt(p);
+                    next1.in+= ind1.in.charAt(p);
+                }
+                if(kindOfCoding==Coding.NKB)
+                {next.x=bin_to_decimal(next.in.substring(0,lengthOfBinaryTheGreatestWord));
+                    next.y =bin_to_decimal(next.in.substring(lengthOfBinaryTheGreatestWord));
+                }
+                else
+                {next.x=gray_to_decimal(next.in.substring(0,lengthOfBinaryTheGreatestWord));
+                    next.y =gray_to_decimal(next.in.substring(lengthOfBinaryTheGreatestWord));
+                }
+                next.adaptation(twoVariablesFunction);
+                next1.adaptation(twoVariablesFunction);
+                new_gen.add(new Individual(next));
+                new_gen.add(new Individual(next1));
+                results.appendText(ind1.in+"  "+ind2.in+" | "+next.in+"  "+next1.in+"\n");
+
+            }
+            j = -1;
+        }
+        for (Individual x : new_gen) {
+            dane.add(new Individual(x));
+        }
+        new_gen.clear();
+    }
 
     void rouletteSelection() {
         Random rand = new Random();
@@ -194,27 +343,26 @@ public class Data {
                 prefix[i] = prefix[i - 1] + x.adaptation;
             }
 
-        }
-        i = 0;
-        int r, l = 0, h = dl - 1, mid, index;
-        while (i < sizeOfPopulation) {
-            r = rand.nextInt(prefix[dl - 1]) + 1;
-            while (l < dl) {
-                mid = l + ((h - l) >> 1);
 
-                if (r > prefix[mid]) {
-                    l = mid + 1;
-                } else h = mid;
-            }
-            if (prefix[l] >= r) {
-                index = l;
-            } else {
-                index = -1;
-            }
-            dane.add(new Individual(dane.get(index)));
+        }
+        int population_adaptation=prefix[i-1];
+        i = 0;
+        int r;
+        int j=0;
+        while (i < sizeOfPopulation)
+        {r = rand.nextInt(population_adaptation) + 1;
+
+        while(r>prefix[j])
+        {j++;
+
+        }
+            dane.add(new Individual(dane.get(j)));
+        j=0;
             i++;
         }
 
+
+        prefix=null;
         while (dane.size() > sizeOfPopulation) {
             dane.remove(0);
         }
@@ -336,18 +484,18 @@ public class Data {
             return this;
         }
         public Data build(){
-            if(kindOfCoding == null) kindOfCoding = Coding.NKB;
-            if(kindOfCrossing == null) kindOfCrossing = Crossover.ONE_POINT;
-            if(probabilityOfCrossover == null) probabilityOfCrossover = 0d;
-            if(probabilityOfMutation == null) probabilityOfMutation = 0d;
-            if(sizeOfPopulation == null) sizeOfPopulation = 0;
-            if(numberOfGeneration == null) numberOfGeneration = 0;
+            if(kindOfCoding == null) kindOfCoding = Coding.GRAY;
+            if(kindOfCrossing == null) kindOfCrossing = Crossover.UNIFORM;
+            if(probabilityOfCrossover == null) probabilityOfCrossover = 0.5d;
+            if(probabilityOfMutation == null) probabilityOfMutation = 0.1d;
+            if(sizeOfPopulation == null) sizeOfPopulation = 20;
+            if(numberOfGeneration == null) numberOfGeneration = 5;
             if(twoVariablesFunction == null) twoVariablesFunction = "x+y";
             if(lengthOfBinaryWord == null) lengthOfBinaryWord = 4;
-            if(minX == null) minX = 0;
-            if(maxX == null) maxX = 0;
-            if(minY == null) minY = 0;
-            if(maxY == null) maxY = 0;
+            if(minX == null) minX = 5;
+            if(maxX == null) maxX = 10;
+            if(minY == null) minY = 6;
+            if(maxY == null) maxY = 8;
             //TODO what default value should be here
             Data resultData = new Data(kindOfCoding,kindOfCrossing,probabilityOfCrossover,probabilityOfMutation,sizeOfPopulation,
                     numberOfGeneration,twoVariablesFunction,minX,maxX,minY,maxY);
