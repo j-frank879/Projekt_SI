@@ -338,7 +338,7 @@ public class Data {
         }
         int population_adaptation = prefix[i - 1];
 
-        System.out.println(prefix[i-1]);
+
 
         i = 0;
         int r;
