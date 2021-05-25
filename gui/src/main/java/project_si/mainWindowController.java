@@ -45,7 +45,7 @@ public class mainWindowController {
 
     private void createSlider() {
         sliderToTextSize = new Slider();
-        sliderToTextSize.setMin(1);
+        sliderToTextSize.setMin(0);
         sliderToTextSize.setMax(50);
         sliderToTextSize.setValue(25);
         sliderToTextSize.setShowTickLabels(true);
@@ -56,11 +56,12 @@ public class mainWindowController {
 
         Label sizeOfFontLabel = new Label("Size of font:");
         sizeOfFontLabel.setFont(Font.font(20));
+        sizeOfFontLabel.setStyle("-fx-padding: 0px, 100px, 110px, 100px;");
 
         Label slideValueLabel = new Label("25");
         sliderToTextSize.valueProperty().addListener((slider, aOld, aNew) -> slideValueLabel.setText(String.valueOf(aNew.intValue())));
         sliderToTextSize.valueProperty().addListener((slider, aOld, aNew) -> results.setFont(Font.font(aNew.intValue())));
-        hBoxWhichParameterButtonIs.getChildren().addAll(sizeOfFontLabel,sliderToTextSize,slideValueLabel);
+        hBoxWhichParameterButtonIs.getChildren().addAll(new Label("   "),sizeOfFontLabel,new Label("  "),sliderToTextSize,new Label(" "),slideValueLabel);
     }
 
     private void createParametersAndResetButtons() {

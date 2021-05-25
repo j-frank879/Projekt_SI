@@ -13,7 +13,7 @@
     <center>
         <AnchorPane prefHeight="570.0" prefWidth="934.0">
             <children>
-                <TextArea fx:id="results" editable="false" layoutX="35.0" layoutY="9.0" prefHeight="571.0" prefWidth="854.0" styleClass="centeredTextArea" stylesheets="@../css/main.css" wrapText="true" />
+                <TextArea fx:id="results" editable="false" layoutX="35.0" layoutY="9.0" prefHeight="564.0" prefWidth="854.0" styleClass="centeredTextArea" stylesheets="@../css/main.css" wrapText="true" />
             </children>
         </AnchorPane>
     </center>
@@ -52,7 +52,7 @@
     <bottom>
         <HBox prefHeight="31.0" prefWidth="934.0" BorderPane.alignment="CENTER">
             <children>
-                <HBox fx:id="hBoxWhichParameterButtonIs" prefWidth="467.0" />
+                <HBox fx:id="hBoxWhichParameterButtonIs" prefHeight="31.0" prefWidth="692.0" />
                 <HBox alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="31.0" prefWidth="467.0">
                     <children>
                         <Button id="exitButton" fx:id="exitButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="64.0" text="Exit">
