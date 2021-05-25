@@ -316,7 +316,7 @@ public class Data {
 
     void rouletteSelection() {
         Random rand = new Random();
-
+        ArrayList<Individual> selected = new ArrayList<>();
         int dl = dane.size();
         if (dl == 0) {
             return;
@@ -327,34 +327,42 @@ public class Data {
         for (Individual x : dane) {
             if (i == 0) {
                 prefix[0] = x.adaptation;
-                i++;
-            } else {
+
+            }
+            else {
                 prefix[i] = prefix[i - 1] + x.adaptation;
+
             }
 
-
+            i++;
         }
         int population_adaptation = prefix[i - 1];
+
+
+
         i = 0;
         int r;
-        int j = 0;
+int j=0;
+
         while (i < sizeOfPopulation) {
-            r = rand.nextInt(population_adaptation) + 1;
-
-            while (r > prefix[j]) {
+            r = rand.nextInt(population_adaptation);
+            while (r >= prefix[j]) {
                 j++;
-
             }
-            dane.add(new Individual(dane.get(j)));
-            j = 0;
+
+            selected.add(new Individual(dane.get(j)));
+            j=0;
+
             i++;
         }
 
 
         prefix = null;
-        while (dane.size() > sizeOfPopulation) {
-            dane.remove(0);
-        }
+        dane.clear();
+        for(Individual x : selected)
+            dane.add(new Individual(x));
+
+        selected.clear();
     }
 
     void setLengthOfBinaryTheGreatestWord(int aLengthOfBinaryTheGreatestWord) {
