@@ -2,9 +2,7 @@ package project_si;
 
 import javafx.fxml.FXML;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
@@ -30,6 +28,7 @@ public class mainWindowController {
     HBox hBoxWhichParameterButtonIs;
     @FXML
     RadioButton splitBetweenGenerationsRadioButton;
+    private Slider sliderToTextSize;
 
     @FXML
     void initialize() {
@@ -38,9 +37,30 @@ public class mainWindowController {
         lastGenerationButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x -> lastGenerationButtonClicked());
         startButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x -> startButtonClicked());
         exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x -> exit());
-        results.setFont(Font.font(25));
 
         createParametersAndResetButtons();
+        createSlider();
+        results.setFont(Font.font(sliderToTextSize.getValue()));
+    }
+
+    private void createSlider() {
+        sliderToTextSize = new Slider();
+        sliderToTextSize.setMin(1);
+        sliderToTextSize.setMax(50);
+        sliderToTextSize.setValue(25);
+        sliderToTextSize.setShowTickLabels(true);
+        sliderToTextSize.setShowTickMarks(true);
+        sliderToTextSize.setMajorTickUnit(10);
+        sliderToTextSize.setMinorTickCount(5);
+        sliderToTextSize.setBlockIncrement(10);
+
+        Label sizeOfFontLabel = new Label("Size of font:");
+        sizeOfFontLabel.setFont(Font.font(20));
+
+        Label slideValueLabel = new Label("25");
+        sliderToTextSize.valueProperty().addListener((slider, aOld, aNew) -> slideValueLabel.setText(String.valueOf(aNew.intValue())));
+        sliderToTextSize.valueProperty().addListener((slider, aOld, aNew) -> results.setFont(Font.font(aNew.intValue())));
+        hBoxWhichParameterButtonIs.getChildren().addAll(sizeOfFontLabel,sliderToTextSize,slideValueLabel);
     }
 
     private void createParametersAndResetButtons() {

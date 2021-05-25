@@ -122,8 +122,8 @@ public class Data {
         set_bin_length();
         dane.clear();
         Individual next = new Individual();
-        for (int i = minX; i < maxX; i++) { // shouldn't be here i <= maxX ??
-            for (int j = minY; j < maxY; j++) { // the same like above
+        for (int i = minX; i <= maxX; i++) { // shouldn't be here i <= maxX ??
+            for (int j = minY; j <= maxY; j++) { // the same like above
                 next.x = i;
                 next.y = j;
                 if (kindOfCoding == Coding.NKB)
