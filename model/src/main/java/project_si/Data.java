@@ -143,7 +143,7 @@ public class Data {
         results.appendText("Mutation: \n");
         for (Individual ind1 : dane) {
             for (int p = 0; p < s; p++) {
-                if (!(probability(probabilityOfMutation)))
+                if (!(probability(probabilityOfMutation/lengthOfBinaryTheGreatestWord)))
                     continue;
                 x = 1;
                 temp = ind1.in;
