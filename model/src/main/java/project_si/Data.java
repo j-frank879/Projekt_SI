@@ -322,40 +322,50 @@ public class Data {
             return;
         }
         int[] prefix = new int[dl];
-
         int i = 0;
-        for (Individual x : dane) {
-            if (i == 0) {
-                prefix[0] = x.adaptation;
+        int j=0;
+        int r=0;
+        int population_adaptation=0;
 
+        while((dane.size()!=0)&&(selected.size()!=sizeOfPopulation))
+        {i=0;
+            for (Individual x : dane)
+            {
+                if (i == 0) {
+                    prefix[0] = x.adaptation;
+
+                }
+                else {
+                    prefix[i] = prefix[i - 1] + x.adaptation;
+
+                }
+
+                i++;
             }
-            else {
-                prefix[i] = prefix[i - 1] + x.adaptation;
+            if(i==0)
+                population_adaptation=0;
+            else
+            population_adaptation = prefix[i - 1];
 
-            }
-
-            i++;
-        }
-        int population_adaptation = prefix[i - 1];
-
-
-
-        i = 0;
-        int r;
-int j=0;
-
-        while (i < sizeOfPopulation) {
-            r = rand.nextInt(population_adaptation);
-            while (r >= prefix[j]) {
-                j++;
-            }
-
-            selected.add(new Individual(dane.get(j)));
             j=0;
+if (population_adaptation==0)
+{selected.add(new Individual(dane.get(0)));
+    dane.remove(j);
+continue;}
+else {
+    r = rand.nextInt(population_adaptation);
 
-            i++;
+    while (r >= prefix[j]) {
+        j++;
+    }
+
+    selected.add(new Individual(dane.get(j)));
+    dane.remove(j);
+}
+
+
+
         }
-
 
         prefix = null;
         dane.clear();
