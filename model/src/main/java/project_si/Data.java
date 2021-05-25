@@ -169,7 +169,7 @@ public class Data {
                 ind1.adaptation(twoVariablesFunction);
             }
             if (x == 1) {
-                results.appendText(temp + " | " + ind1.in + "\n");
+                results.appendText("Before - "+temp + " -> " + ind1.in + " - After"+"\n");
                 x = 0;
             }
         }
@@ -196,7 +196,7 @@ public class Data {
                 next.y = ind2.y;
                 next.adaptation(twoVariablesFunction);
                 new_gen.add(new Individual(next));
-                results.appendText(ind1.in + "  " + ind2.in + " | " + next.in + "  ");
+                results.appendText("Parents: "+ind1.in + "  " + ind2.in + " | Children: " + next.in + "  ");
                 //second
                 next.in = ind2.in.substring(0, lengthOfBinaryTheGreatestWord) + ind1.in.substring(lengthOfBinaryTheGreatestWord);
                 next.x = ind2.x;
@@ -242,7 +242,7 @@ public class Data {
                 }
                 next.adaptation(twoVariablesFunction);
                 new_gen.add(new Individual(next));
-                results.appendText(ind1.in + "  " + ind2.in + " | " + next.in + "  ");
+                results.appendText("Parents: "+ind1.in + "  " + ind2.in + " | Children: " + next.in + "  ");
                 //second
                 next.in = ind2.in.substring(0, point1) + ind1.in.substring(point1, point2) + ind2.in.substring(point2);
                 if (kindOfCoding == Coding.NKB) {
@@ -303,7 +303,7 @@ public class Data {
                 next1.adaptation(twoVariablesFunction);
                 new_gen.add(new Individual(next));
                 new_gen.add(new Individual(next1));
-                results.appendText(ind1.in + "  " + ind2.in + " | " + next.in + "  " + next1.in + "\n");
+                results.appendText("Parents: "+ind1.in + "  " + ind2.in + " | Children: " + next.in + "  " + next1.in + "\n");
 
             }
             j = -1;

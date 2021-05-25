@@ -38,6 +38,7 @@ public class mainWindowController {
         lastGenerationButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x -> lastGenerationButtonClicked());
         startButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x -> startButtonClicked());
         exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, x -> exit());
+        results.setFont(Font.font(25));
 
         createParametersAndResetButtons();
     }
@@ -111,7 +112,7 @@ public class mainWindowController {
         int x = 1;
         int y = 2 * data.getLengthOfBinaryTheGreatestWord();
         for (Individual ind1 : data.getDane()) {
-            results.appendText("Osobnik: " + x + "  " + ind1.in + "  " + "X=" + ind1.x + "  " + "Y=" + ind1.y + "  " + "Adaptation=" + ind1.adaptation + "\n");
+            results.appendText("Individual: " + x + "  " + ind1.in + "  " + "X=" + ind1.x + "  " + "Y=" + ind1.y + "  " + "Adaptation=" + ind1.adaptation + "\n");
             x++;
         }
         results.appendText("\n");
