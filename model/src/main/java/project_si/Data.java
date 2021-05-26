@@ -1,9 +1,7 @@
 package project_si;
 
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -143,7 +141,7 @@ public class Data {
         results.appendText("Mutation: \n");
         for (Individual ind1 : dane) {
             for (int p = 0; p < s; p++) {
-                if (!(probability(probabilityOfMutation/lengthOfBinaryTheGreatestWord)))
+                if (!(probability(probabilityOfMutation)))
                     continue;
                 x = 1;
                 temp = ind1.in;
