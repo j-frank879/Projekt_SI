@@ -34,7 +34,11 @@ public class Individual {
                 .build()
                 .setVariable("x", x)
                 .setVariable("y", y);
+if((int) e.evaluate()<0)
+{this.adaptation = 0;
+return;
 
+}
         this.adaptation = (int) e.evaluate();
     }
 
